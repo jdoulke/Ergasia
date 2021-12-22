@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -37,10 +38,12 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Item> list, Item item, int index, boolean isSelected, boolean cellHasFocus) {
-        //System.out.println(getClass().getResource("").getPath());
-        icon.setIcon(new ImageIcon("" + item.getImage() + ".jpg"));
+        Image tempImage = new ImageIcon(getClass().getResource(item.getImage() + ".jpg"))
+                            .getImage()
+                            .getScaledInstance(128, 128, Image.SCALE_DEFAULT);
+        icon.setIcon(new ImageIcon(tempImage));
         name.setText(item.getName());
-        price.setText(Integer.toString(item.getPrice()));
+        price.setText("Price: " + Integer.toString(item.getPrice()) + "€");
         price.setForeground(Color.blue);
  
         return this;

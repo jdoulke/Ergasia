@@ -522,7 +522,7 @@ public class Katastima extends javax.swing.JFrame {
         });
     }
     //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
-        public ImageIcon resize(ImageIcon icon){
+    public ImageIcon resize(ImageIcon icon){
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(testLabel.getWidth(), testLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newimage = new ImageIcon(newImg);
@@ -530,14 +530,13 @@ public class Katastima extends javax.swing.JFrame {
     }
     
     private DefaultListModel getListModel() {
-        Item i1 = new Item(1, "ok", 50, "monitor");
-        Item i2 = new Item(2, "ok2", 75, "monitor");
-        Item i3 = new Item(3, "ok3", 100, "monitor");
         
         DefaultListModel listModel = new DefaultListModel<>();
-        listModel.addElement(i1);
-        listModel.addElement(i2);
-        listModel.addElement(i3);
+        listModel.addElement(new Item(1, "ok", 50, "monitor"));
+        listModel.addElement(new Item(2, "ok2", 75, "monitor"));
+        listModel.addElement(new Item(3, "Razer Kraken", 100, "monitor"));
+        listModel.addElement(new Item(3, "LG Monitor", 100, "monitor"));
+        listModel.addElement(new Item(3, "LG Mouse", 100, "monitor"));
         
         return listModel;
     }
