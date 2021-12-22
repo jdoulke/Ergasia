@@ -454,8 +454,6 @@ public class Katastima extends javax.swing.JFrame {
             models.addRow(row);
             ItemsList.setModel(getListModel());
             testLabel.setIcon(resize(ficon));
-            ficon = new ImageIcon("DefaultImage/noimage.png");
-            System.out.print("geia");
         }
         if(model.isEmpty()){
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
@@ -463,7 +461,7 @@ public class Katastima extends javax.swing.JFrame {
         mmodel.setText("");
         mvalue.setText("");
         mposotita.setValue(1);
-        ficon = new ImageIcon("DefaultImage/noimage.png");
+        ficon = new ImageIcon("src/DefaultImage/noimage.png");
     }//GEN-LAST:event_finaladdmonitorActionPerformed
 
     private void mvalueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mvalueKeyTyped
