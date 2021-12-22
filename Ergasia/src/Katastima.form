@@ -415,11 +415,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
-                      <Component id="testLabel" min="-2" pref="276" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -445,9 +440,7 @@
                           <Component id="addPeripherals" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="67" max="32767" attributes="0"/>
-                      <Component id="testLabel" min="-2" pref="147" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace pref="238" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -495,8 +488,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x391;&#x3c6;&#x3b1;&#x3b9;&#x3c1;&#x3b5;&#x3c3;&#x3ae; &#x3a0;&#x3b5;&#x3c1;&#x3b9;&#x3c6;&#x3b5;&#x3c1;&#x3b5;&#x3b9;&#x3b1;&#x3ba;&#x3ce;&#x3bd;"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="testLabel">
             </Component>
           </SubComponents>
         </Container>

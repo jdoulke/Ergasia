@@ -81,7 +81,6 @@ public class Katastima extends javax.swing.JFrame {
         removeComputer = new javax.swing.JButton();
         addPeripherals = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        testLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Mtable = new javax.swing.JTable();
@@ -332,10 +331,6 @@ public class Katastima extends javax.swing.JFrame {
                     .addComponent(removeLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(removeMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(testLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,9 +351,7 @@ public class Katastima extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addPeripherals)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(testLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", jPanel3);
@@ -453,7 +446,6 @@ public class Katastima extends javax.swing.JFrame {
             DefaultTableModel models = (DefaultTableModel) Mtable.getModel();
             models.addRow(row);
             ItemsList.setModel(getListModel());
-            testLabel.setIcon(resize(ficon));
         }
         if(model.isEmpty()){
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
@@ -541,12 +533,12 @@ public class Katastima extends javax.swing.JFrame {
         });
     }
     //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
-    public ImageIcon resize(ImageIcon icon){
+    /*public ImageIcon resize(ImageIcon icon){
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(testLabel.getWidth(), testLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newimage = new ImageIcon(newImg);
         return newimage;
-    }
+    }*/
     
     private DefaultListModel getListModel() {
         
@@ -599,6 +591,5 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton removeComputer;
     private javax.swing.JButton removeLaptop;
     private javax.swing.JButton removeMonitor;
-    private javax.swing.JLabel testLabel;
     // End of variables declaration//GEN-END:variables
 }
