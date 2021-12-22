@@ -26,11 +26,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Katastima extends javax.swing.JFrame {
 
-    ArrayList<Monitor> monitor = new ArrayList<>();
+    ArrayList<Item> monitor = new ArrayList<>();
+    ArrayList<Item> laptop = new ArrayList<>();
+    ArrayList<Item> computer = new ArrayList<>();
+    ArrayList<Item> peripherals = new ArrayList<>();
     ArrayList<String> client = new ArrayList<>();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG and JPG images", "png", "jpg");
     ImageIcon ficon = new ImageIcon("src/DefaultImage/noimage.png");;
-    Image image = null;
+    BufferedImage image = null;
 
     public Katastima() {
         initComponents();
@@ -62,6 +65,8 @@ public class Katastima extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ItemsList = new javax.swing.JList<Item>();
+        jTextField1 = new javax.swing.JTextField();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -195,21 +200,39 @@ public class Katastima extends javax.swing.JFrame {
         jScrollPane3.setViewportView(ItemsList);
         ItemsList.getAccessibleContext().setAccessibleDescription("");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(jComboBox3, 0, 207, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Καλάθι", jPanel1);
@@ -424,19 +447,19 @@ public class Katastima extends javax.swing.JFrame {
         String model = mmodel.getText();
         float value = CheckTextFieldForNumber(mvalue.getText());
         int posotita = mposotita.getComponentCount();
-        ImageIcon tempicon;
         if(!model.isEmpty() && value != -1){
-            monitor.add(new Monitor(model,value,posotita,ficon));
+            monitor.add(new Item(model,value,posotita,ficon));
             Object[] row = {model,value,posotita};
             DefaultTableModel models = (DefaultTableModel) Mtable.getModel();
             models.addRow(row);
-            tempicon = ficon;
-            testLabel.setIcon(resize(tempicon));
-        }else{
-            testLabel.setIcon(null);
+            ItemsList.setModel(getListModel());
+            testLabel.setIcon(resize(ficon));
+            ficon = new ImageIcon("DefaultImage/noimage.png");
+            System.out.print("geia");
         }
-        if(model.isEmpty())
+        if(model.isEmpty()){
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
+        }
         mmodel.setText("");
         mvalue.setText("");
         mposotita.setValue(1);
@@ -451,18 +474,12 @@ public class Katastima extends javax.swing.JFrame {
         int res = Chooser.showSaveDialog(micon);
         if(res == JFileChooser.APPROVE_OPTION){
             File selFile = Chooser.getSelectedFile();
-            try {
-            ImageIO.write((BufferedImage) image, "jpg", new File(selFile.getAbsolutePath()));
-            ficon = new ImageIcon(image);
-        } catch (IOException ex) {
-            System.out.println("Failed to save image!");
-            JOptionPane.showMessageDialog(Dialog, " Failed to save Image","Input Error",JOptionPane.WARNING_MESSAGE);
-        } catch (IllegalArgumentException e){
-            
+            ficon = new ImageIcon(selFile.getAbsolutePath());
         }
-        } else {
+        else {
             JOptionPane.showMessageDialog(Dialog, " No File Choosen","Input Error",JOptionPane.PLAIN_MESSAGE);
-        }  
+        } 
+        
     }//GEN-LAST:event_miconActionPerformed
 
     private void MtableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtableFocusGained
@@ -473,6 +490,10 @@ public class Katastima extends javax.swing.JFrame {
         MonitorTab.setSize(330,300);
         MonitorTab.setVisible(true);
     }//GEN-LAST:event_addMonitorActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     private float CheckTextFieldForNumber(String text){
         float value = -1;
             try {
@@ -532,11 +553,10 @@ public class Katastima extends javax.swing.JFrame {
     private DefaultListModel getListModel() {
         
         DefaultListModel listModel = new DefaultListModel<>();
-        listModel.addElement(new Item(1, "ok", 50, "monitor"));
-        listModel.addElement(new Item(2, "ok2", 75, "monitor"));
-        listModel.addElement(new Item(3, "Razer Kraken", 100, "monitor"));
-        listModel.addElement(new Item(3, "LG Monitor", 100, "monitor"));
-        listModel.addElement(new Item(3, "LG Mouse", 100, "monitor"));
+        int i;
+        for(i = 0; i < monitor.size(); i++){
+          listModel.addElement(monitor.get(i));
+        } 
         
         return listModel;
     }
@@ -556,6 +576,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -572,6 +593,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton micon;
     private javax.swing.JTextField mmodel;
     private javax.swing.JSpinner mposotita;
