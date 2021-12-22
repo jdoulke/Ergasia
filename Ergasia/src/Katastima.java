@@ -1,6 +1,5 @@
 
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import Models.Item;
+import View.ItemRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -58,6 +60,8 @@ public class Katastima extends javax.swing.JFrame {
         Chooser = new javax.swing.JFileChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ItemsList = new javax.swing.JList<Item>();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -185,15 +189,26 @@ public class Katastima extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Κατάστημα");
 
+        ItemsList.setModel(getListModel());
+        ItemsList.setCellRenderer(new ItemRenderer());
+        jScrollPane3.setViewportView(ItemsList);
+        ItemsList.getAccessibleContext().setAccessibleDescription("");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Καλάθι", jPanel1);
@@ -480,18 +495,33 @@ public class Katastima extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Katastima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+               
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Katastima().setVisible(true);
+                
             }
         });
+    }
+    
+    private DefaultListModel getListModel() {
+        Item i1 = new Item(1, "ok", 50, "monitor");
+        Item i2 = new Item(2, "ok2", 75, "monitor");
+        Item i3 = new Item(3, "ok3", 100, "monitor");
+        
+        DefaultListModel listModel = new DefaultListModel<>();
+        listModel.addElement(i1);
+        listModel.addElement(i2);
+        listModel.addElement(i3);
+        
+        return listModel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser Chooser;
     private javax.swing.JDialog Dialog;
+    private javax.swing.JList<Item> ItemsList;
     private javax.swing.JFrame MonitorTab;
     private javax.swing.JTable Mtable;
     private javax.swing.JLabel ShowIcon;
@@ -516,6 +546,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton micon;
