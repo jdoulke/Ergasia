@@ -4,39 +4,38 @@
  */
 package Models;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Dimos
  */
 public class Item {
-    private int ID;
-    private String name;
-    private int price;
-    private String image;
+    private String model;
+    private float price;
+    private int posotita;
+    private ImageIcon image;
     
-    public Item(int ID, String name, int price, String image) {
-        this.ID = ID;
-        this.name = name;
+    public Item(String model, int price,int posotita, ImageIcon image) {
+        this.model = model;
         this.price = price;
+        this.posotita = posotita;
         this.image = image;
     }
     
-    public int getID() {
-        return ID;
-    }
     public String getName() {
-        return name;
+        return model;
     }       
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
-    public String getImage() {
+    public ImageIcon getImage() {
         return image;
     }
     
     @Override
     public String toString() {
-        return name + " " + price;
+        return model + " " + price;
     }
 }
 
