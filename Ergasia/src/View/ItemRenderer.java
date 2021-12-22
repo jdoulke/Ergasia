@@ -38,8 +38,7 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
     @Override
     public Component getListCellRendererComponent(JList<? extends Item> list, Item item, int index, boolean isSelected, boolean cellHasFocus) {
         //System.out.println(getClass().getResource("").getPath());
-        icon.setIcon(new ImageIcon(getClass().getResource(
-                "" + item.getImage() + ".jpg")));
+        icon.setIcon(new ImageIcon("" + item.getImage() + ".jpg"));
         name.setText(item.getName());
         price.setText(Integer.toString(item.getPrice()));
         price.setForeground(Color.blue);

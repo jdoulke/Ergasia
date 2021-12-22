@@ -29,7 +29,7 @@ public class Katastima extends javax.swing.JFrame {
     ArrayList<Monitor> monitor = new ArrayList<>();
     ArrayList<String> client = new ArrayList<>();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG and JPG images", "png", "jpg");
-    ImageIcon ficon = new ImageIcon(getClass().getResource("DefaultImage/noimage.png"));;
+    ImageIcon ficon = new ImageIcon("src/DefaultImage/noimage.png");;
     Image image = null;
 
     public Katastima() {
@@ -76,6 +76,7 @@ public class Katastima extends javax.swing.JFrame {
         removeComputer = new javax.swing.JButton();
         addPeripherals = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        testLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Mtable = new javax.swing.JTable();
@@ -308,6 +309,10 @@ public class Katastima extends javax.swing.JFrame {
                     .addComponent(removeLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(removeMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(testLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +333,9 @@ public class Katastima extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addPeripherals)
                     .addComponent(jButton1))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(testLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", jPanel3);
@@ -415,21 +422,25 @@ public class Katastima extends javax.swing.JFrame {
 
     private void finaladdmonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdmonitorActionPerformed
         String model = mmodel.getText();
-        String svalue = mvalue.getText();
-        float value = CheckTextFieldForNumber(svalue);
-        if(image != null)
-            ficon = new ImageIcon(image);
+        float value = CheckTextFieldForNumber(mvalue.getText());
         int posotita = mposotita.getComponentCount();
+        ImageIcon tempicon;
         if(!model.isEmpty() && value != -1){
-        monitor.add(new Monitor(model,value,posotita,ficon));
-        Object[] row = {model,value,posotita};
-        DefaultTableModel models = (DefaultTableModel) Mtable.getModel();
-        models.addRow(row);
+            monitor.add(new Monitor(model,value,posotita,ficon));
+            Object[] row = {model,value,posotita};
+            DefaultTableModel models = (DefaultTableModel) Mtable.getModel();
+            models.addRow(row);
+            tempicon = ficon;
+            testLabel.setIcon(resize(tempicon));
+        }else{
+            testLabel.setIcon(null);
         }
+        if(model.isEmpty())
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
         mmodel.setText("");
         mvalue.setText("");
         mposotita.setValue(1);
-        ficon = new ImageIcon(getClass().getResource("DefaultImage/noimage.png"));
+        ficon = new ImageIcon("DefaultImage/noimage.png");
     }//GEN-LAST:event_finaladdmonitorActionPerformed
 
     private void mvalueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mvalueKeyTyped
@@ -441,10 +452,13 @@ public class Katastima extends javax.swing.JFrame {
         if(res == JFileChooser.APPROVE_OPTION){
             File selFile = Chooser.getSelectedFile();
             try {
-            ImageIO.write((BufferedImage) image, "png", new File(selFile.getAbsolutePath()));
+            ImageIO.write((BufferedImage) image, "jpg", new File(selFile.getAbsolutePath()));
+            ficon = new ImageIcon(image);
         } catch (IOException ex) {
             System.out.println("Failed to save image!");
             JOptionPane.showMessageDialog(Dialog, " Failed to save Image","Input Error",JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException e){
+            
         }
         } else {
             JOptionPane.showMessageDialog(Dialog, " No File Choosen","Input Error",JOptionPane.PLAIN_MESSAGE);
@@ -459,13 +473,16 @@ public class Katastima extends javax.swing.JFrame {
         MonitorTab.setSize(330,300);
         MonitorTab.setVisible(true);
     }//GEN-LAST:event_addMonitorActionPerformed
-    private float CheckTextFieldForNumber(String svalue){
+    private float CheckTextFieldForNumber(String text){
         float value = -1;
             try {
-                value = Float.parseFloat(svalue);
+                value = Float.parseFloat(text);
                 return value;
             }catch (NumberFormatException nfe){
-               JOptionPane.showMessageDialog(Dialog, svalue + " is not a number","Input Error",JOptionPane.WARNING_MESSAGE);
+                if(text != null)
+                    JOptionPane.showMessageDialog(Dialog, text + " δεν είναι αριθμός","Input Error",JOptionPane.WARNING_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό","Input Error",JOptionPane.WARNING_MESSAGE);
             }
         return value;
     }
@@ -503,6 +520,13 @@ public class Katastima extends javax.swing.JFrame {
                 
             }
         });
+    }
+    //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
+        public ImageIcon resize(ImageIcon icon){
+        Image img = icon.getImage();
+        Image newImg = img.getScaledInstance(testLabel.getWidth(), testLabel.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon newimage = new ImageIcon(newImg);
+        return newimage;
     }
     
     private DefaultListModel getListModel() {
@@ -556,5 +580,6 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton removeComputer;
     private javax.swing.JButton removeLaptop;
     private javax.swing.JButton removeMonitor;
+    private javax.swing.JLabel testLabel;
     // End of variables declaration//GEN-END:variables
 }
