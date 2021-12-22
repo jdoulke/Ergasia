@@ -1,8 +1,17 @@
 
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,7 +27,8 @@ public class Katastima extends javax.swing.JFrame {
     ArrayList<Monitor> monitor = new ArrayList<>();
     ArrayList<String> client = new ArrayList<>();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG and JPG images", "png", "jpg");
-    ImageIcon ficon;
+    ImageIcon ficon = new ImageIcon(getClass().getResource("DefaultImage/noimage.png"));;
+    Image image = null;
 
     public Katastima() {
         initComponents();
@@ -34,15 +44,18 @@ public class Katastima extends javax.swing.JFrame {
     private void initComponents() {
 
         MonitorTab = new javax.swing.JFrame();
-        jLabel3 = new javax.swing.JLabel();
         mmodel = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        mcompany = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         mvalue = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         mposotita = new javax.swing.JSpinner();
         finaladdmonitor = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        micon = new javax.swing.JButton();
+        Dialog = new javax.swing.JDialog();
+        jOptionPane1 = new javax.swing.JOptionPane();
+        Chooser = new javax.swing.JFileChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -61,13 +74,12 @@ public class Katastima extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Mtable = new javax.swing.JTable();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        ShowIcon = new javax.swing.JLabel();
 
         MonitorTab.setTitle("Προσθήκη Οθόνης");
-
-        jLabel3.setText("Κατασκευαστής Οθόνης");
 
         mmodel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,12 +89,17 @@ public class Katastima extends javax.swing.JFrame {
 
         jLabel4.setText("Μοντέλο Οθόνης");
 
-        mcompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LG", "Samsung", "HP", "Asus", "Dell", "Xiaomi", "MSI", "ViewSonic", "Other", " " }));
-
         jLabel5.setText("Αξία Οθόνης");
+
+        mvalue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mvalueKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Απόθεμα Οθόνης");
 
+        mposotita.setRequestFocusEnabled(false);
         mposotita.setValue(1);
         mposotita.setModel(new javax.swing.SpinnerNumberModel(0,0,null,1));
 
@@ -93,6 +110,15 @@ public class Katastima extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Εικόνα Οθόνης");
+
+        micon.setText("Προσθήκη Εικόνας");
+        micon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miconActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MonitorTabLayout = new javax.swing.GroupLayout(MonitorTab.getContentPane());
         MonitorTab.getContentPane().setLayout(MonitorTabLayout);
         MonitorTabLayout.setHorizontalGroup(
@@ -100,30 +126,26 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(MonitorTabLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(mmodel)
-                    .addComponent(mcompany, 0, 127, Short.MAX_VALUE)
                     .addComponent(mvalue)
-                    .addComponent(mposotita))
+                    .addComponent(mposotita)
+                    .addComponent(micon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
             .addGroup(MonitorTabLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(finaladdmonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(finaladdmonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MonitorTabLayout.setVerticalGroup(
             MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MonitorTabLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mcompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(mmodel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,10 +157,30 @@ public class Katastima extends javax.swing.JFrame {
                 .addGroup(MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(mposotita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
+                .addGroup(MonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(micon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(finaladdmonitor)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
+
+        javax.swing.GroupLayout DialogLayout = new javax.swing.GroupLayout(Dialog.getContentPane());
+        Dialog.getContentPane().setLayout(DialogLayout);
+        DialogLayout.setHorizontalGroup(
+            DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        DialogLayout.setVerticalGroup(
+            DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        Chooser.setDialogTitle("Select an Image");
+
+        Chooser.setFileFilter(filter);
+        Chooser.setAcceptAllFileFilterUsed(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Κατάστημα");
@@ -265,7 +307,7 @@ public class Katastima extends javax.swing.JFrame {
                     .addComponent(removeLaptop))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addComputer, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addComputer)
                     .addComponent(removeComputer))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -276,25 +318,30 @@ public class Katastima extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", jPanel3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        Mtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Προιον", "Αξία", "Ποσότητα"
+                "Προιον", "Αξία", "Ποσότητα"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        Mtable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                MtableFocusGained(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Mtable);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Οθόνες", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Επιλογή Κατηγορίας");
@@ -306,24 +353,28 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addComponent(ShowIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141)
+                        .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -337,33 +388,72 @@ public class Katastima extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMonitorActionPerformed
-        MonitorTab.setSize(330,300);
-        MonitorTab.setVisible(true);
-    }//GEN-LAST:event_addMonitorActionPerformed
 
     private void mmodelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmodelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mmodelActionPerformed
 
     private void finaladdmonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdmonitorActionPerformed
-        String company = (String) mcompany.getSelectedItem();
         String model = mmodel.getText();
-        double value = Double.parseDouble(mvalue.getText());
+        String svalue = mvalue.getText();
+        float value = CheckTextFieldForNumber(svalue);
+        if(image != null)
+            ficon = new ImageIcon(image);
         int posotita = mposotita.getComponentCount();
-        monitor.add(new Monitor(company,model,value,posotita));
-        mcompany.setSelectedIndex(0);
+        if(!model.isEmpty() && value != -1){
+        monitor.add(new Monitor(model,value,posotita,ficon));
+        Object[] row = {model,value,posotita};
+        DefaultTableModel models = (DefaultTableModel) Mtable.getModel();
+        models.addRow(row);
+        }
         mmodel.setText("");
         mvalue.setText("");
         mposotita.setValue(1);
+        ficon = new ImageIcon(getClass().getResource("DefaultImage/noimage.png"));
     }//GEN-LAST:event_finaladdmonitorActionPerformed
 
+    private void mvalueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mvalueKeyTyped
+        
+    }//GEN-LAST:event_mvalueKeyTyped
+
+    private void miconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miconActionPerformed
+        int res = Chooser.showSaveDialog(micon);
+        if(res == JFileChooser.APPROVE_OPTION){
+            File selFile = Chooser.getSelectedFile();
+            try {
+            ImageIO.write((BufferedImage) image, "png", new File(selFile.getAbsolutePath()));
+        } catch (IOException ex) {
+            System.out.println("Failed to save image!");
+            JOptionPane.showMessageDialog(Dialog, " Failed to save Image","Input Error",JOptionPane.WARNING_MESSAGE);
+        }
+        } else {
+            JOptionPane.showMessageDialog(Dialog, " No File Choosen","Input Error",JOptionPane.PLAIN_MESSAGE);
+        }  
+    }//GEN-LAST:event_miconActionPerformed
+
+    private void MtableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtableFocusGained
+
+    }//GEN-LAST:event_MtableFocusGained
+
+    private void addMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMonitorActionPerformed
+        MonitorTab.setSize(330,300);
+        MonitorTab.setVisible(true);
+    }//GEN-LAST:event_addMonitorActionPerformed
+    private float CheckTextFieldForNumber(String svalue){
+        float value = -1;
+            try {
+                value = Float.parseFloat(svalue);
+                return value;
+            }catch (NumberFormatException nfe){
+               JOptionPane.showMessageDialog(Dialog, svalue + " is not a number","Input Error",JOptionPane.WARNING_MESSAGE);
+            }
+        return value;
+    }
     /**
      * @param args the command line arguments
      */
@@ -400,7 +490,11 @@ public class Katastima extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser Chooser;
+    private javax.swing.JDialog Dialog;
     private javax.swing.JFrame MonitorTab;
+    private javax.swing.JTable Mtable;
+    private javax.swing.JLabel ShowIcon;
     private javax.swing.JButton addComputer;
     private javax.swing.JButton addLaptop;
     private javax.swing.JButton addMonitor;
@@ -415,6 +509,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -423,8 +518,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JComboBox<String> mcompany;
+    private javax.swing.JButton micon;
     private javax.swing.JTextField mmodel;
     private javax.swing.JSpinner mposotita;
     private javax.swing.JTextField mvalue;
