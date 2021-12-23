@@ -66,8 +66,31 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="mmodel">
+        </Component>
+        <Component class="javax.swing.JTextField" name="mvalue">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="mposotita">
+          <Properties>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="mposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="finaladdmonitor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mmodelActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finaladdmonitorActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="micon">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1;&#x3c2;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miconActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -80,17 +103,86 @@
             <Property name="text" type="java.lang.String" value="&#x391;&#x3be;&#x3af;&#x3b1; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="mvalue">
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mvalueKeyTyped"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x391;&#x3c0;&#x3cc;&#x3b8;&#x3b5;&#x3bc;&#x3b1; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="mposotita">
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JFrame" name="LaptopTab">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel9" alignment="0" pref="131" max="32767" attributes="0"/>
+                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lmodel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lvalue" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lposotita" alignment="0" max="32767" attributes="0"/>
+                      <Component id="licon" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="finaladdlaptop" min="-2" pref="226" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lmodel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lvalue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lposotita" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="licon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <Component id="finaladdlaptop" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="lmodel">
+        </Component>
+        <Component class="javax.swing.JTextField" name="lvalue">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="lposotita">
           <Properties>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
             <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -98,29 +190,162 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="mposotita.setModel(new javax.swing.SpinnerNumberModel(0,0,null,1));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));"/>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Katastima_lposotita"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="finaladdmonitor">
+        <Component class="javax.swing.JButton" name="finaladdlaptop">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; Laptop"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finaladdmonitorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finaladdlaptopActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="micon">
+        <Component class="javax.swing.JButton" name="licon">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1;&#x3c2;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miconActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="liconActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x39c;&#x3bf;&#x3bd;&#x3c4;&#x3ad;&#x3bb;&#x3bf; Laptop"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3be;&#x3af;&#x3b1; Laptop"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3c0;&#x3cc;&#x3b8;&#x3b5;&#x3bc;&#x3b1; Laptop"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1; Laptop"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JFrame" name="ComputerTab">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel13" alignment="0" pref="131" max="32767" attributes="0"/>
+                      <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="cmodel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cvalue" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cposotita" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cicon" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="finaladdcomputer" min="-2" pref="226" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmodel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cvalue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cposotita" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cicon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <Component id="finaladdcomputer" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="cmodel">
+        </Component>
+        <Component class="javax.swing.JTextField" name="cvalue">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="cposotita">
+          <Properties>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="1" type="code"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));"/>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Katastima_lposotita"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="finaladdcomputer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x397;/&#x3a5;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finaladdcomputerActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="cicon">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; &#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1;&#x3c2;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ciconActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x39c;&#x3bf;&#x3bd;&#x3c4;&#x3ad;&#x3bb;&#x3bf; &#x397;/&#x3a5;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3be;&#x3af;&#x3b1; &#x397;/&#x3a5;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3c0;&#x3cc;&#x3b8;&#x3b5;&#x3bc;&#x3b1; &#x397;/&#x3a5;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3ba;&#x3cc;&#x3bd;&#x3b1; &#x397;/&#x3a5;"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -170,7 +395,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" min="-2" pref="715" max="-2" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -202,7 +427,7 @@
                           <Component id="jTextField1" max="32767" attributes="0"/>
                           <Component id="jComboBox3" pref="207" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="69" max="32767" attributes="0"/>
+                      <EmptySpace pref="85" max="32767" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="364" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
@@ -213,7 +438,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" alignment="0" pref="402" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" alignment="0" pref="390" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -292,7 +517,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace pref="79" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -308,7 +533,7 @@
                               <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="167" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -406,7 +631,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="199" max="32767" attributes="0"/>
+                      <EmptySpace pref="215" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="removeComputer" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -440,7 +665,7 @@
                           <Component id="addPeripherals" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="238" max="32767" attributes="0"/>
+                      <EmptySpace pref="226" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -458,11 +683,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; Laptop"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addLaptopActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addComputer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3c3;&#x3b8;&#x3ae;&#x3ba;&#x3b7; H/Y"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addComputerActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="removeMonitor">
               <Properties>
@@ -511,7 +742,7 @@
                                   <Component id="jComboBox2" min="-2" pref="166" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
                           </Group>
                           <Component id="ShowIcon" max="32767" attributes="0"/>
                       </Group>
@@ -535,7 +766,7 @@
                               <Component id="ShowIcon" min="-2" pref="148" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="58" max="32767" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -580,9 +811,6 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="MtableFocusGained"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

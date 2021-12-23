@@ -2,9 +2,7 @@
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -50,14 +48,34 @@ public class Katastima extends javax.swing.JFrame {
 
         MonitorTab = new javax.swing.JFrame();
         mmodel = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         mvalue = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         mposotita = new javax.swing.JSpinner();
         finaladdmonitor = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         micon = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        LaptopTab = new javax.swing.JFrame();
+        lmodel = new javax.swing.JTextField();
+        lvalue = new javax.swing.JTextField();
+        lposotita = new javax.swing.JSpinner();
+        finaladdlaptop = new javax.swing.JButton();
+        licon = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        ComputerTab = new javax.swing.JFrame();
+        cmodel = new javax.swing.JTextField();
+        cvalue = new javax.swing.JTextField();
+        cposotita = new javax.swing.JSpinner();
+        finaladdcomputer = new javax.swing.JButton();
+        cicon = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         Dialog = new javax.swing.JDialog();
         jOptionPane1 = new javax.swing.JOptionPane();
         Chooser = new javax.swing.JFileChooser();
@@ -90,27 +108,8 @@ public class Katastima extends javax.swing.JFrame {
 
         MonitorTab.setTitle("Προσθήκη Οθόνης");
 
-        mmodel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmodelActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Μοντέλο Οθόνης");
-
-        jLabel5.setText("Αξία Οθόνης");
-
-        mvalue.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                mvalueKeyTyped(evt);
-            }
-        });
-
-        jLabel6.setText("Απόθεμα Οθόνης");
-
         mposotita.setRequestFocusEnabled(false);
-        mposotita.setValue(1);
-        mposotita.setModel(new javax.swing.SpinnerNumberModel(0,0,null,1));
+        mposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));
 
         finaladdmonitor.setText("Προσθήκη Οθόνης");
         finaladdmonitor.addActionListener(new java.awt.event.ActionListener() {
@@ -119,14 +118,20 @@ public class Katastima extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Εικόνα Οθόνης");
-
         micon.setText("Προσθήκη Εικόνας");
         micon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miconActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Μοντέλο Οθόνης");
+
+        jLabel5.setText("Αξία Οθόνης");
+
+        jLabel6.setText("Απόθεμα Οθόνης");
+
+        jLabel3.setText("Εικόνα Οθόνης");
 
         javax.swing.GroupLayout MonitorTabLayout = new javax.swing.GroupLayout(MonitorTab.getContentPane());
         MonitorTab.getContentPane().setLayout(MonitorTabLayout);
@@ -175,6 +180,156 @@ public class Katastima extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        LaptopTab.setTitle("Προσθήκη Οθόνης");
+
+        lposotita.setRequestFocusEnabled(false);
+        lposotita.setValue(1);
+        lposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));
+
+        finaladdlaptop.setText("Προσθήκη Laptop");
+        finaladdlaptop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finaladdlaptopActionPerformed(evt);
+            }
+        });
+
+        licon.setText("Προσθήκη Εικόνας");
+        licon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                liconActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Μοντέλο Laptop");
+
+        jLabel8.setText("Αξία Laptop");
+
+        jLabel9.setText("Απόθεμα Laptop");
+
+        jLabel10.setText("Εικόνα Laptop");
+
+        javax.swing.GroupLayout LaptopTabLayout = new javax.swing.GroupLayout(LaptopTab.getContentPane());
+        LaptopTab.getContentPane().setLayout(LaptopTabLayout);
+        LaptopTabLayout.setHorizontalGroup(
+            LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LaptopTabLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lmodel)
+                    .addComponent(lvalue)
+                    .addComponent(lposotita)
+                    .addComponent(licon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
+            .addGroup(LaptopTabLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(finaladdlaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        LaptopTabLayout.setVerticalGroup(
+            LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LaptopTabLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lmodel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(lposotita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(LaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(licon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(finaladdlaptop)
+                .addGap(21, 21, 21))
+        );
+
+        ComputerTab.setTitle("Προσθήκη Οθόνης");
+
+        cposotita.setRequestFocusEnabled(false);
+        cposotita.setValue(1);
+        cposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));
+
+        finaladdcomputer.setText("Προσθήκη Η/Υ");
+        finaladdcomputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finaladdcomputerActionPerformed(evt);
+            }
+        });
+
+        cicon.setText("Προσθήκη Εικόνας");
+        cicon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ciconActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Μοντέλο Η/Υ");
+
+        jLabel12.setText("Αξία Η/Υ");
+
+        jLabel13.setText("Απόθεμα Η/Υ");
+
+        jLabel14.setText("Εικόνα Η/Υ");
+
+        javax.swing.GroupLayout ComputerTabLayout = new javax.swing.GroupLayout(ComputerTab.getContentPane());
+        ComputerTab.getContentPane().setLayout(ComputerTabLayout);
+        ComputerTabLayout.setHorizontalGroup(
+            ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ComputerTabLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmodel)
+                    .addComponent(cvalue)
+                    .addComponent(cposotita)
+                    .addComponent(cicon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
+            .addGroup(ComputerTabLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(finaladdcomputer, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ComputerTabLayout.setVerticalGroup(
+            ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ComputerTabLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(cmodel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(cvalue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(cposotita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(cicon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(finaladdcomputer)
+                .addGap(21, 21, 21))
+        );
+
         javax.swing.GroupLayout DialogLayout = new javax.swing.GroupLayout(Dialog.getContentPane());
         Dialog.getContentPane().setLayout(DialogLayout);
         DialogLayout.setHorizontalGroup(
@@ -216,7 +371,7 @@ public class Katastima extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
                     .addComponent(jComboBox3, 0, 207, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
@@ -225,7 +380,7 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -271,7 +426,7 @@ public class Katastima extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +438,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Παραγγελίες", jPanel2);
@@ -296,8 +451,18 @@ public class Katastima extends javax.swing.JFrame {
         });
 
         addLaptop.setText("Προσθήκη Laptop");
+        addLaptop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLaptopActionPerformed(evt);
+            }
+        });
 
         addComputer.setText("Προσθήκη H/Y");
+        addComputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addComputerActionPerformed(evt);
+            }
+        });
 
         removeMonitor.setText("Αφαίρεση Οθόνης");
 
@@ -324,7 +489,7 @@ public class Katastima extends javax.swing.JFrame {
                             .addComponent(addComputer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(removeComputer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -351,7 +516,7 @@ public class Katastima extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addPeripherals)
                     .addComponent(jButton1))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", jPanel3);
@@ -372,11 +537,6 @@ public class Katastima extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        Mtable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                MtableFocusGained(evt);
-            }
-        });
         jScrollPane2.setViewportView(Mtable);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Οθόνες", "Item 2", "Item 3", "Item 4" }));
@@ -395,7 +555,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 26, Short.MAX_VALUE))
                     .addComponent(ShowIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,7 +573,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(141, 141, 141)
                         .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Απόθεμα", jPanel4);
@@ -422,7 +582,7 @@ public class Katastima extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,13 +592,15 @@ public class Katastima extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mmodelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmodelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mmodelActionPerformed
-
     private void finaladdmonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdmonitorActionPerformed
         String model = mmodel.getText();
-        float value = CheckTextFieldForNumber(mvalue.getText());
+        float value = -1;
+        if(model.isEmpty())
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
+        if(!mvalue.getText().isEmpty())
+            value = CheckTextFieldForNumber(mvalue.getText());
+        else
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
         int posotita = mposotita.getComponentCount();
         if(!model.isEmpty() && value != -1){
             monitor.add(new Item(model,value,posotita,ficon));
@@ -447,20 +609,94 @@ public class Katastima extends javax.swing.JFrame {
             models.addRow(row);
             ItemsList.setModel(getListModel());
         }
-        if(model.isEmpty()){
-            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
-        }
         mmodel.setText("");
         mvalue.setText("");
         mposotita.setValue(1);
         ficon = new ImageIcon("src/DefaultImage/noimage.png");
     }//GEN-LAST:event_finaladdmonitorActionPerformed
 
-    private void mvalueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mvalueKeyTyped
-        
-    }//GEN-LAST:event_mvalueKeyTyped
-
     private void miconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miconActionPerformed
+        ImageChooser();
+    }//GEN-LAST:event_miconActionPerformed
+
+    private void addMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMonitorActionPerformed
+        MonitorTab.setSize(330,300);
+        MonitorTab.pack();
+        MonitorTab.setLocationRelativeTo(null);
+        MonitorTab.setVisible(true);
+    }//GEN-LAST:event_addMonitorActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void finaladdlaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdlaptopActionPerformed
+        String model = lmodel.getText();
+        float value = -1;
+        if(model.isEmpty())
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
+        if(!lvalue.getText().isEmpty())
+            value = CheckTextFieldForNumber(lvalue.getText());
+        else
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
+        int posotita = lposotita.getComponentCount();
+        if(!model.isEmpty() && value != -1){
+            laptop.add(new Item(model,value,posotita,ficon));
+            /*Object[] row = {model,value,posotita};
+            DefaultTableModel models = (DefaultTableModel) Ltable.getModel();
+            models.addRow(row);*/
+        }
+        lmodel.setText("");
+        lvalue.setText("");
+        lposotita.setValue(1);
+        ficon = new ImageIcon("src/DefaultImage/noimage.png");
+    
+    }//GEN-LAST:event_finaladdlaptopActionPerformed
+
+    private void liconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liconActionPerformed
+       ImageChooser();
+    }//GEN-LAST:event_liconActionPerformed
+
+    private void addLaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLaptopActionPerformed
+        LaptopTab.setSize(330,300);
+        LaptopTab.pack();
+        LaptopTab.setLocationRelativeTo(null);
+        LaptopTab.setVisible(true);
+    }//GEN-LAST:event_addLaptopActionPerformed
+
+    private void finaladdcomputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdcomputerActionPerformed
+        String model = cmodel.getText();
+        float value = -1;
+        if(model.isEmpty())
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε Μοντέλο","Input Error",JOptionPane.WARNING_MESSAGE);
+        if(!cvalue.getText().isEmpty())
+            value = CheckTextFieldForNumber(cvalue.getText());
+        else
+            JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
+        int posotita = cposotita.getComponentCount();
+        if(!model.isEmpty() && value != -1){
+            computer.add(new Item(model,value,posotita,ficon));
+            /*Object[] row = {model,value,posotita};
+            DefaultTableModel models = (DefaultTableModel) Ltable.getModel();
+            models.addRow(row);*/
+        }
+        cmodel.setText("");
+        cvalue.setText("");
+        cposotita.setValue(1);
+        ficon = new ImageIcon("src/DefaultImage/noimage.png");
+    }//GEN-LAST:event_finaladdcomputerActionPerformed
+
+    private void ciconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciconActionPerformed
+         ImageChooser();      
+    }//GEN-LAST:event_ciconActionPerformed
+
+    private void addComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addComputerActionPerformed
+        ComputerTab.setSize(330,330);
+        ComputerTab.pack();
+        ComputerTab.setLocationRelativeTo(null);
+        ComputerTab.setVisible(true);
+    }//GEN-LAST:event_addComputerActionPerformed
+    private void ImageChooser(){
         int res = Chooser.showSaveDialog(micon);
         if(res == JFileChooser.APPROVE_OPTION){
             File selFile = Chooser.getSelectedFile();
@@ -468,32 +704,16 @@ public class Katastima extends javax.swing.JFrame {
         }
         else {
             JOptionPane.showMessageDialog(Dialog, " No File Choosen","Input Error",JOptionPane.PLAIN_MESSAGE);
-        } 
-        
-    }//GEN-LAST:event_miconActionPerformed
-
-    private void MtableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtableFocusGained
-
-    }//GEN-LAST:event_MtableFocusGained
-
-    private void addMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMonitorActionPerformed
-        MonitorTab.setSize(330,300);
-        MonitorTab.setVisible(true);
-    }//GEN-LAST:event_addMonitorActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        }   
+    }
+    
     private float CheckTextFieldForNumber(String text){
         float value = -1;
             try {
                 value = Float.parseFloat(text);
                 return value;
             }catch (NumberFormatException nfe){
-                if(text != null)
-                    JOptionPane.showMessageDialog(Dialog, text + " δεν είναι αριθμός","Input Error",JOptionPane.WARNING_MESSAGE);
-                else
-                    JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό","Input Error",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(Dialog,"Το '" + text + "' δεν είναι αριθμός.","Input Error",JOptionPane.WARNING_MESSAGE);        
             }
         return value;
     }
@@ -527,8 +747,7 @@ public class Katastima extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Katastima().setVisible(true);
-                
+                new Katastima().setVisible(true);               
             }
         });
     }
@@ -553,8 +772,10 @@ public class Katastima extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser Chooser;
+    private javax.swing.JFrame ComputerTab;
     private javax.swing.JDialog Dialog;
     private javax.swing.JList<Item> ItemsList;
+    private javax.swing.JFrame LaptopTab;
     private javax.swing.JFrame MonitorTab;
     private javax.swing.JTable Mtable;
     private javax.swing.JLabel ShowIcon;
@@ -562,17 +783,31 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton addLaptop;
     private javax.swing.JButton addMonitor;
     private javax.swing.JButton addPeripherals;
+    private javax.swing.JButton cicon;
+    private javax.swing.JTextField cmodel;
+    private javax.swing.JSpinner cposotita;
+    private javax.swing.JTextField cvalue;
+    private javax.swing.JButton finaladdcomputer;
+    private javax.swing.JButton finaladdlaptop;
     private javax.swing.JButton finaladdmonitor;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -584,6 +819,10 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton licon;
+    private javax.swing.JTextField lmodel;
+    private javax.swing.JSpinner lposotita;
+    private javax.swing.JTextField lvalue;
     private javax.swing.JButton micon;
     private javax.swing.JTextField mmodel;
     private javax.swing.JSpinner mposotita;
