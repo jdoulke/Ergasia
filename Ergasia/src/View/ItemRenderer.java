@@ -22,9 +22,9 @@ import javax.swing.ListCellRenderer;
  */
 public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
     
-    private JLabel icon = new JLabel();
-    private JLabel name = new JLabel();
-    private JLabel price = new JLabel();
+    JLabel icon = new JLabel();
+    JLabel name = new JLabel();
+    JLabel price = new JLabel();
     
     public ItemRenderer() {
         setLayout(new BorderLayout(5, 5));
@@ -33,19 +33,25 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
         panelText.add(name);
         panelText.add(price);
         add(icon, BorderLayout.WEST);
-        add(panelText, BorderLayout.CENTER); 
+        icon.setSize(128,128);
+        add(panelText, BorderLayout.CENTER);
     }
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Item> list, Item item, int index, boolean isSelected, boolean cellHasFocus) {
-        Image tempImage = new ImageIcon(getClass().getResource(item.getImage() + ".jpg"))
-                            .getImage()
-                            .getScaledInstance(128, 128, Image.SCALE_DEFAULT);
-        icon.setIcon(new ImageIcon(tempImage));
+        ImageIcon tempImage;
+        tempImage = item.getImage();
+        icon.setIcon(resize(tempImage));
         name.setText(item.getName());
-        price.setText("Price: " + Integer.toString(item.getPrice()) + "€");
+        price.setText("Price: " + Float.toString(item.getPrice()) + "€");
         price.setForeground(Color.blue);
  
         return this;
+    }
+    public ImageIcon resize(ImageIcon icona){
+        Image img = icona.getImage();
+        Image newImg = img.getScaledInstance(icon.getWidth(), icon.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon newimage = new ImageIcon(newImg);
+        return newimage;
     }
 }

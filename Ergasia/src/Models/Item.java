@@ -11,12 +11,13 @@ import javax.swing.ImageIcon;
  * @author Dimos
  */
 public class Item {
-    private String model;
-    private float price;
-    private int posotita;
-    private ImageIcon image;
     
-    public Item(String model, int price,int posotita, ImageIcon image) {
+    String model;
+    float price;
+    int posotita;
+    ImageIcon image;
+    
+    public Item(String model, float price,int posotita, ImageIcon image) {
         this.model = model;
         this.price = price;
         this.posotita = posotita;
@@ -28,6 +29,12 @@ public class Item {
     }       
     public float getPrice() {
         return price;
+    }
+    public int getPosotita() {
+        return posotita;
+    }
+    public void setPosotita(int posotita) {
+        this.posotita = posotita;
     }
     public ImageIcon getImage() {
         return image;
