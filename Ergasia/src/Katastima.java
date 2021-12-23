@@ -9,8 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
+import java.awt.Window;
 import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -85,6 +90,9 @@ public class Katastima extends javax.swing.JFrame {
         Dialog = new javax.swing.JDialog();
         jOptionPane1 = new javax.swing.JOptionPane();
         Chooser = new javax.swing.JFileChooser();
+        removeMonitorTab = new javax.swing.JFrame();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        removemonitortable = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -427,6 +435,44 @@ public class Katastima extends javax.swing.JFrame {
         Chooser.setFileFilter(filter);
         Chooser.setAcceptAllFileFilterUsed(false);
 
+        removemonitortable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Μοντέλο", "Αξία", "Ποσότητα"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(removemonitortable);
+        /*ListSelectionModel listModel = removemonitortable.getSelectionModel();
+        listModel.setSelectionMode (ListSelectionModel.SINGLE_SELECTION);
+        listModel.addListSelectionListener(listModel);*/
+
+        javax.swing.GroupLayout removeMonitorTabLayout = new javax.swing.GroupLayout(removeMonitorTab.getContentPane());
+        removeMonitorTab.getContentPane().setLayout(removeMonitorTabLayout);
+        removeMonitorTabLayout.setHorizontalGroup(
+            removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removeMonitorTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        removeMonitorTabLayout.setVerticalGroup(
+            removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Κατάστημα");
         setIconImage(logo.getImage());
@@ -547,6 +593,11 @@ public class Katastima extends javax.swing.JFrame {
         });
 
         removeMonitor.setText("Αφαίρεση Οθόνης");
+        removeMonitor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMonitorActionPerformed(evt);
+            }
+        });
 
         removeLaptop.setText("Αφαίρεση Laptop");
 
@@ -813,6 +864,46 @@ public class Katastima extends javax.swing.JFrame {
         addPeripheralTab.setLocationRelativeTo(null);
         addPeripheralTab.setVisible(true);
     }//GEN-LAST:event_addPeripheralsActionPerformed
+
+    private void removeMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMonitorActionPerformed
+        String id ="m";
+        String ID;
+        String model;
+        float price;
+        int posotita;
+        int i;
+        Item tempitem;
+        for(i = 0; i < monitor.size(); ++i){
+            tempitem = monitor.get(i);
+            ID = id + i;
+            model = tempitem.getName();
+            price = tempitem.getPrice();
+            posotita = tempitem.getPosotita();
+            Object[] row = {ID,model,price,posotita};
+            DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
+            modelm.addRow(row);
+        }
+        ListSelectionModel listModel = removemonitortable.getSelectionModel();
+        listModel.addListSelectionListener(removemonitortable);
+        removeMonitorTab.setSize(700,450);
+        removeMonitorTab.setLocationRelativeTo(null);
+        removeMonitorTab.setVisible(true);
+    }//GEN-LAST:event_removeMonitorActionPerformed
+    public void valueChanged(ListSelectionEvent e) {
+            int[] sel;
+            Object item;
+            if (!e.getValueIsAdjusting()) {
+            sel = removemonitortable.getSelectedRows();
+            if (sel.length > 0) {
+                for (int i=0; i < 4; i++) {
+                    TableModel tm = removemonitortable.getModel();
+                    item = tm.getValueAt(sel[0],i);
+                    System.out.print(item + " ");
+        }
+        System.out.println();
+      }
+    }
+  }
     private void ImageChooser(){
         int res = Chooser.showSaveDialog(micon);
         if(res == JFileChooser.APPROVE_OPTION){
@@ -938,6 +1029,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -956,6 +1048,8 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton removeComputer;
     private javax.swing.JButton removeLaptop;
     private javax.swing.JButton removeMonitor;
+    private javax.swing.JFrame removeMonitorTab;
     private javax.swing.JButton removePeripherals;
+    private javax.swing.JTable removemonitortable;
     // End of variables declaration//GEN-END:variables
 }

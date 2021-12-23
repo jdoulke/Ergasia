@@ -27,8 +27,7 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
     JLabel price = new JLabel();
     
     public ItemRenderer() {
-        setLayout(new BorderLayout(5, 5));
-        
+        setLayout(new BorderLayout(5, 5));     
         JPanel panelText = new JPanel(new GridLayout(0, 1));
         panelText.add(name);
         panelText.add(price);
