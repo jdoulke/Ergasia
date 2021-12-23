@@ -689,7 +689,7 @@ public class Katastima extends javax.swing.JFrame {
             value = CheckTextFieldForNumber(mvalue.getText());
         else
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
-        int posotita = mposotita.getComponentCount();
+        int posotita = (Integer)mposotita.getValue();
         if(!model.isEmpty() && value != -1){
             monitor.add(new Item(model,value,posotita,ficon));
             Object[] row = {model,value,posotita};
@@ -726,7 +726,7 @@ public class Katastima extends javax.swing.JFrame {
             value = CheckTextFieldForNumber(lvalue.getText());
         else
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
-        int posotita = lposotita.getComponentCount();
+        int posotita = (Integer)lposotita.getValue();
         if(!model.isEmpty() && value != -1){
             laptop.add(new Item(model,value,posotita,ficon));
             /*Object[] row = {model,value,posotita};
@@ -759,7 +759,7 @@ public class Katastima extends javax.swing.JFrame {
             value = CheckTextFieldForNumber(cvalue.getText());
         else
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
-        int posotita = cposotita.getComponentCount();
+        int posotita = (Integer)cposotita.getValue();
         if(!model.isEmpty() && value != -1){
             computer.add(new Item(model,value,posotita,ficon));
             /*Object[] row = {model,value,posotita};
@@ -791,7 +791,7 @@ public class Katastima extends javax.swing.JFrame {
             value = CheckTextFieldForNumber(pvalue.getText());
         else
             JOptionPane.showMessageDialog(Dialog, "Πρέπει να πληκτρολογήσετε κάποιον αριθμό.","Input Error",JOptionPane.WARNING_MESSAGE);
-        int posotita = pposotita.getComponentCount();
+        int posotita = (Integer)pposotita.getValue();
         if(!model.isEmpty() && value != -1){
             peripherals.add(new Item(model,value,posotita,ficon));
             /*Object[] row = {model,value,posotita};
