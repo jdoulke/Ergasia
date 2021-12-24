@@ -9,14 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
-import java.awt.Window;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -39,6 +35,8 @@ public class Katastima extends javax.swing.JFrame {
     ImageIcon ficon = new ImageIcon("src/DefaultImage/noimage.png");
     BufferedImage image = null;
     ImageIcon logo = new ImageIcon("src/DefaultImage/Shop.png");
+    Item tempitem;
+    int[] sel;
 
     public Katastima() {
         initComponents();
@@ -93,6 +91,10 @@ public class Katastima extends javax.swing.JFrame {
         removeMonitorTab = new javax.swing.JFrame();
         jScrollPane4 = new javax.swing.JScrollPane();
         removemonitortable = new javax.swing.JTable();
+        jLabel19 = new javax.swing.JLabel();
+        monitorLabel = new javax.swing.JLabel();
+        finalremovemonitor = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -435,42 +437,84 @@ public class Katastima extends javax.swing.JFrame {
         Chooser.setFileFilter(filter);
         Chooser.setAcceptAllFileFilterUsed(false);
 
+        removeMonitorTab.setTitle("Αφαίρεση Οθόνης");
+        removeMonitorTab.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                removeMonitorTabWindowClosing(evt);
+            }
+        });
+
         removemonitortable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Μοντέλο", "Αξία", "Ποσότητα"
+                "Μοντέλο", "Αξία", "Ποσότητα"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
         });
+        removemonitortable.setCellSelectionEnabled(false);
         jScrollPane4.setViewportView(removemonitortable);
-        /*ListSelectionModel listModel = removemonitortable.getSelectionModel();
-        listModel.setSelectionMode (ListSelectionModel.SINGLE_SELECTION);
-        listModel.addListSelectionListener(listModel);*/
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel19.setText("Επιλεξτέ την οθόνη που θέλετε να αφαιρέσετε");
+
+        monitorLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        monitorLabel.setText("Καμία οθόνη ακόμα");
+
+        finalremovemonitor.setText("Αφαίρεση Οθόνης");
+        finalremovemonitor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalremovemonitorActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel20.setText("Επιλέξατε την Οθόνη");
 
         javax.swing.GroupLayout removeMonitorTabLayout = new javax.swing.GroupLayout(removeMonitorTab.getContentPane());
         removeMonitorTab.getContentPane().setLayout(removeMonitorTabLayout);
         removeMonitorTabLayout.setHorizontalGroup(
             removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removeMonitorTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel19))
+                    .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(monitorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(finalremovemonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         removeMonitorTabLayout.setVerticalGroup(
             removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(removeMonitorTabLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(monitorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(finalremovemonitor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -866,44 +910,62 @@ public class Katastima extends javax.swing.JFrame {
     }//GEN-LAST:event_addPeripheralsActionPerformed
 
     private void removeMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMonitorActionPerformed
-        String id ="m";
-        String ID;
+        DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
         String model;
         float price;
         int posotita;
         int i;
-        Item tempitem;
         for(i = 0; i < monitor.size(); ++i){
             tempitem = monitor.get(i);
-            ID = id + i;
             model = tempitem.getName();
             price = tempitem.getPrice();
             posotita = tempitem.getPosotita();
-            Object[] row = {ID,model,price,posotita};
-            DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
+            Object[] row = {model,price,posotita};
             modelm.addRow(row);
         }
         ListSelectionModel listModel = removemonitortable.getSelectionModel();
-        listModel.addListSelectionListener(removemonitortable);
+        listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         removeMonitorTab.setSize(700,450);
         removeMonitorTab.setLocationRelativeTo(null);
         removeMonitorTab.setVisible(true);
+        listModel.addListSelectionListener((ListSelectionEvent e) -> {
+        sel = removemonitortable.getSelectedRows();
+         if(sel.length > 0){
+                String tempmodel = String.valueOf(modelm.getValueAt(sel[0],0));
+                float tempprice = (float) modelm.getValueAt(sel[0],1);
+                int tempposotita = (int) modelm.getValueAt(sel[0],2);
+                tempitem = new Item(tempmodel,tempprice,tempposotita,ficon);
+                monitorLabel.setText(tempmodel);
+                System.out.println(tempitem);
+
+            }
+        });
     }//GEN-LAST:event_removeMonitorActionPerformed
-    public void valueChanged(ListSelectionEvent e) {
-            int[] sel;
-            Object item;
-            if (!e.getValueIsAdjusting()) {
-            sel = removemonitortable.getSelectedRows();
-            if (sel.length > 0) {
-                for (int i=0; i < 4; i++) {
-                    TableModel tm = removemonitortable.getModel();
-                    item = tm.getValueAt(sel[0],i);
-                    System.out.print(item + " ");
+
+    private void removeMonitorTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeMonitorTabWindowClosing
+        DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
+        int j;
+        for(j = 0; j < monitor.size();j++){
+                    modelm.removeRow(0);
         }
-        System.out.println();
-      }
-    }
-  }
+        
+    }//GEN-LAST:event_removeMonitorTabWindowClosing
+
+    @SuppressWarnings("SuspiciousIndentAfterControlStatement")
+    private void finalremovemonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovemonitorActionPerformed
+       if(monitorLabel.getText().equals("Καμία οθόνη ακόμα")){
+            JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποια οθόνη","Διαγραφή Οθόνης",JOptionPane.WARNING_MESSAGE);
+        }else{
+            JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή της οθόνης;","Διαγραφή Οθόνης",JOptionPane.YES_NO_OPTION);
+            int res = JOptionPane.YES_OPTION;
+            if(res == 0)
+                monitor.remove(sel[0]);
+                sel[0]=0;
+                monitorLabel.setText("Καμία οθόνη ακόμα");
+        }
+        
+    }//GEN-LAST:event_finalremovemonitorActionPerformed
+
     private void ImageChooser(){
         int res = Chooser.showSaveDialog(micon);
         if(res == JFileChooser.APPROVE_OPTION){
@@ -1000,6 +1062,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton finaladdlaptop;
     private javax.swing.JButton finaladdmonitor;
     private javax.swing.JButton finaladdperipheral;
+    private javax.swing.JButton finalremovemonitor;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1013,7 +1076,9 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1039,6 +1104,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JTextField lvalue;
     private javax.swing.JButton micon;
     private javax.swing.JTextField mmodel;
+    private javax.swing.JLabel monitorLabel;
     private javax.swing.JSpinner mposotita;
     private javax.swing.JTextField mvalue;
     private javax.swing.JButton picon;

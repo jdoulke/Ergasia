@@ -489,23 +489,52 @@
       </AuxValues>
     </Component>
     <Container class="javax.swing.JFrame" name="removeMonitorTab">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="&#x391;&#x3c6;&#x3b1;&#x3af;&#x3c1;&#x3b5;&#x3c3;&#x3b7; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="removeMonitorTabWindowClosing"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane4" pref="681" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane4" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel20" pref="402" max="32767" attributes="0"/>
+                              <Component id="monitorLabel" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="finalremovemonitor" min="-2" pref="222" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                  <Component id="jScrollPane4" min="-2" pref="262" max="-2" attributes="0"/>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jScrollPane4" min="-2" pref="180" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jLabel20" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="monitorLabel" pref="34" max="32767" attributes="0"/>
+                      <Component id="finalremovemonitor" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -520,15 +549,13 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="removemonitortable">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
-                    <Column editable="true" title="ID" type="java.lang.Integer"/>
-                    <Column editable="true" title="&#x39c;&#x3bf;&#x3bd;&#x3c4;&#x3ad;&#x3bb;&#x3bf;" type="java.lang.String"/>
-                    <Column editable="true" title="&#x391;&#x3be;&#x3af;&#x3b1;" type="java.lang.Float"/>
-                    <Column editable="true" title="&#x3a0;&#x3bf;&#x3c3;&#x3cc;&#x3c4;&#x3b7;&#x3c4;&#x3b1;" type="java.lang.Object"/>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;&#x39c;&#x3bf;&#x3bd;&#x3c4;&#x3ad;&#x3bb;&#x3bf;&quot;, &quot;&#x391;&#x3be;&#x3af;&#x3b1;&quot;, &quot;&#x3a0;&#x3bf;&#x3c3;&#x3cc;&#x3c4;&#x3b7;&#x3c4;&#x3b1;&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.Float.class, java.lang.Object.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;    public boolean isCellEditable(int row, int column) {                &#xa;                return false;               &#xa;        };&#xa;}" type="code"/>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="/*ListSelectionModel listModel = removemonitortable.getSelectionModel();&#xa;listModel.setSelectionMode (ListSelectionModel.SINGLE_SELECTION);&#xa;listModel.addListSelectionListener(listModel);*/">
+                <Property name="cellSelectionEnabled" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="false" type="code"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
@@ -559,6 +586,38 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel19">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3bb;&#x3b5;&#x3be;&#x3c4;&#x3ad; &#x3c4;&#x3b7;&#x3bd; &#x3bf;&#x3b8;&#x3cc;&#x3bd;&#x3b7; &#x3c0;&#x3bf;&#x3c5; &#x3b8;&#x3ad;&#x3bb;&#x3b5;&#x3c4;&#x3b5; &#x3bd;&#x3b1; &#x3b1;&#x3c6;&#x3b1;&#x3b9;&#x3c1;&#x3ad;&#x3c3;&#x3b5;&#x3c4;&#x3b5;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="monitorLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x39a;&#x3b1;&#x3bc;&#x3af;&#x3b1; &#x3bf;&#x3b8;&#x3cc;&#x3bd;&#x3b7; &#x3b1;&#x3ba;&#x3cc;&#x3bc;&#x3b1;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="finalremovemonitor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3c6;&#x3b1;&#x3af;&#x3c1;&#x3b5;&#x3c3;&#x3b7; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;&#x3c2;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalremovemonitorActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel20">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3bb;&#x3ad;&#x3be;&#x3b1;&#x3c4;&#x3b5; &#x3c4;&#x3b7;&#x3bd; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </NonVisualComponents>
