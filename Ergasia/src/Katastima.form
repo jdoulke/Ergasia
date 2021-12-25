@@ -501,22 +501,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jScrollPane4" alignment="1" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="153" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
-                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="monitorLabel" alignment="0" min="-2" pref="362" max="-2" attributes="0"/>
+                      <Component id="jLabel20" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel20" pref="402" max="32767" attributes="0"/>
-                              <Component id="monitorLabel" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Component id="finalremovemonitor" min="-2" pref="222" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="monitoricon" min="-2" pref="262" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -527,14 +528,21 @@
                   <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" pref="180" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jLabel20" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="monitorLabel" pref="34" max="32767" attributes="0"/>
-                      <Component id="finalremovemonitor" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jLabel20" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="monitorLabel" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="finalremovemonitor" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="monitoricon" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -597,7 +605,7 @@
         <Component class="javax.swing.JLabel" name="monitorLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="Segoe UI" size="16" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x39a;&#x3b1;&#x3bc;&#x3af;&#x3b1; &#x3bf;&#x3b8;&#x3cc;&#x3bd;&#x3b7; &#x3b1;&#x3ba;&#x3cc;&#x3bc;&#x3b1;"/>
           </Properties>
@@ -617,6 +625,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3bb;&#x3ad;&#x3be;&#x3b1;&#x3c4;&#x3b5; &#x3c4;&#x3b7;&#x3bd; &#x39f;&#x3b8;&#x3cc;&#x3bd;&#x3b7;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="monitoricon">
         </Component>
       </SubComponents>
     </Container>

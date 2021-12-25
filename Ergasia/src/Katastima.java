@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
+import java.awt.Image;
+import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -25,14 +27,17 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("unchecked")
 public class Katastima extends javax.swing.JFrame {
 
-
+    //ArrayLists
     ArrayList<Item> monitor = new ArrayList<>();
     ArrayList<Item> laptop = new ArrayList<>();
     ArrayList<Item> computer = new ArrayList<>();
     ArrayList<Item> peripherals = new ArrayList<>();
     ArrayList<String> client = new ArrayList<>();
+    
+    
     FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG and JPEG images", "png", "jpg", "jpeg");
     ImageIcon ficon = new ImageIcon("src/DefaultImage/noimage.png");
+    ImageIcon noimage = new ImageIcon("src/DefaultImage/noimage.png");
     BufferedImage image = null;
     ImageIcon logo = new ImageIcon("src/DefaultImage/Shop.png");
     Item tempitem;
@@ -95,6 +100,7 @@ public class Katastima extends javax.swing.JFrame {
         monitorLabel = new javax.swing.JLabel();
         finalremovemonitor = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        monitoricon = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -469,7 +475,7 @@ public class Katastima extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Επιλεξτέ την οθόνη που θέλετε να αφαιρέσετε");
 
-        monitorLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        monitorLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         monitorLabel.setText("Καμία οθόνη ακόμα");
 
         finalremovemonitor.setText("Αφαίρεση Οθόνης");
@@ -488,18 +494,20 @@ public class Katastima extends javax.swing.JFrame {
             removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel19)
+                .addContainerGap(153, Short.MAX_VALUE))
+            .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(monitorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(removeMonitorTabLayout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel19))
-                    .addGroup(removeMonitorTabLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                            .addComponent(monitorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(77, 77, 77)
                         .addComponent(finalremovemonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(monitoricon, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         removeMonitorTabLayout.setVerticalGroup(
             removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,13 +516,18 @@ public class Katastima extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(monitorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(finalremovemonitor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGroup(removeMonitorTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monitorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finalremovemonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(removeMonitorTabLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monitoricon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -914,6 +927,7 @@ public class Katastima extends javax.swing.JFrame {
         String model;
         float price;
         int posotita;
+        ImageIcon tempicon;
         int i;
         for(i = 0; i < monitor.size(); ++i){
             tempitem = monitor.get(i);
@@ -931,12 +945,10 @@ public class Katastima extends javax.swing.JFrame {
         listModel.addListSelectionListener((ListSelectionEvent e) -> {
         sel = removemonitortable.getSelectedRows();
          if(sel.length > 0){
-                String tempmodel = String.valueOf(modelm.getValueAt(sel[0],0));
-                float tempprice = (float) modelm.getValueAt(sel[0],1);
-                int tempposotita = (int) modelm.getValueAt(sel[0],2);
-                tempitem = new Item(tempmodel,tempprice,tempposotita,ficon);
-                monitorLabel.setText(tempmodel);
+                tempitem = monitor.get(sel[0]);
                 System.out.println(tempitem);
+                monitorLabel.setText(tempitem.getName());
+                monitoricon.setIcon(resize(tempitem.getImage()));
 
             }
         });
@@ -945,8 +957,14 @@ public class Katastima extends javax.swing.JFrame {
     private void removeMonitorTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeMonitorTabWindowClosing
         DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
         int j;
-        for(j = 0; j < monitor.size();j++){
-                    modelm.removeRow(0);
+        try{
+            for(j = 0; j < monitor.size();j++){
+                        modelm.removeRow(0);
+            }
+            monitorLabel.setText("Καμία οθόνη ακόμα");
+            monitoricon.setIcon(resize(noimage));
+        }catch(ArrayIndexOutOfBoundsException e){
+            
         }
         
     }//GEN-LAST:event_removeMonitorTabWindowClosing
@@ -959,13 +977,37 @@ public class Katastima extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή της οθόνης;","Διαγραφή Οθόνης",JOptionPane.YES_NO_OPTION);
             int res = JOptionPane.YES_OPTION;
             if(res == 0)
-                monitor.remove(sel[0]);
-                sel[0]=0;
-                monitorLabel.setText("Καμία οθόνη ακόμα");
+                removeMonitorItem();
         }
         
     }//GEN-LAST:event_finalremovemonitorActionPerformed
-
+    private void removeMonitorItem(){
+        DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
+        try{
+                System.out.println(monitor);
+                monitor.remove(sel[0]);
+                sel[0]=0;
+                monitorLabel.setText("Καμία οθόνη ακόμα");
+                System.out.println(monitor);
+                
+        int j;
+        for(j = 0; j < monitor.size();j++){
+                    modelm.removeRow(0);
+        }
+        for(j = 0; j < monitor.size()-1;j++){
+            tempitem = monitor.get(j);
+            String model = tempitem.getName();
+            float price = tempitem.getPrice();
+            int posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        }catch(IndexOutOfBoundsException e){
+                
+        }
+        
+        
+    }
     private void ImageChooser(){
         int res = Chooser.showSaveDialog(micon);
         if(res == JFileChooser.APPROVE_OPTION){
@@ -1022,12 +1064,12 @@ public class Katastima extends javax.swing.JFrame {
         });
     }
     //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
-    /*public ImageIcon resize(ImageIcon icon){
+    public ImageIcon resize(ImageIcon icon){
         Image img = icon.getImage();
-        Image newImg = img.getScaledInstance(testLabel.getWidth(), testLabel.getHeight(), Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(monitoricon.getWidth(), monitoricon.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newimage = new ImageIcon(newImg);
         return newimage;
-    }*/
+    }
     
     private DefaultListModel getListModel() {
         
@@ -1105,6 +1147,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton micon;
     private javax.swing.JTextField mmodel;
     private javax.swing.JLabel monitorLabel;
+    private javax.swing.JLabel monitoricon;
     private javax.swing.JSpinner mposotita;
     private javax.swing.JTextField mvalue;
     private javax.swing.JButton picon;
