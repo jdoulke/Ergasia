@@ -10,7 +10,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
 import java.awt.Image;
-import java.util.Arrays;
+import java.awt.List;
+import static java.util.Collections.list;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -126,17 +127,17 @@ public class Katastima extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         peripheralicon = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        Cart = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ItemsList = new javax.swing.JList<Item>();
         jTextField1 = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
+        Orders = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        Product_Management = new javax.swing.JPanel();
         addMonitor = new javax.swing.JButton();
         addLaptop = new javax.swing.JButton();
         addComputer = new javax.swing.JButton();
@@ -145,10 +146,12 @@ public class Katastima extends javax.swing.JFrame {
         removeComputer = new javax.swing.JButton();
         addPeripherals = new javax.swing.JButton();
         removePeripherals = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        Stock = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Mtable = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        productstable = new javax.swing.JTable();
+        catsel = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         ShowIcon = new javax.swing.JLabel();
 
@@ -818,6 +821,7 @@ public class Katastima extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Κατάστημα");
         setIconImage(logo.getImage());
+        setResizable(false);
 
         ItemsList.setModel(getListModel());
         ItemsList.setCellRenderer(new ItemRenderer());
@@ -832,26 +836,26 @@ public class Katastima extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout CartLayout = new javax.swing.GroupLayout(Cart);
+        Cart.setLayout(CartLayout);
+        CartLayout.setHorizontalGroup(
+            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
                     .addComponent(jComboBox3, 0, 207, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        CartLayout.setVerticalGroup(
+            CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CartLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(CartLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -859,7 +863,7 @@ public class Katastima extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Καλάθι", jPanel1);
+        jTabbedPane1.addTab("Καλάθι", Cart);
 
         jComboBox1.setModel(new DefaultComboBoxModel<String>(client.toArray(new String[0])));
 
@@ -885,33 +889,33 @@ public class Katastima extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Πελάτης");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
+        Orders.setLayout(OrdersLayout);
+        OrdersLayout.setHorizontalGroup(
+            OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OrdersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        OrdersLayout.setVerticalGroup(
+            OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OrdersLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(OrdersLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(167, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Παραγγελίες", jPanel2);
+        jTabbedPane1.addTab("Παραγγελίες", Orders);
 
         addMonitor.setText("Προσθήκη Οθόνης");
         addMonitor.addActionListener(new java.awt.event.ActionListener() {
@@ -969,54 +973,73 @@ public class Katastima extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(addPeripherals))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel27.setText("Προσθήκη Προιόντων");
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel28.setText("Αφαίρεση Προιόντων");
+
+        javax.swing.GroupLayout Product_ManagementLayout = new javax.swing.GroupLayout(Product_Management);
+        Product_Management.setLayout(Product_ManagementLayout);
+        Product_ManagementLayout.setHorizontalGroup(
+            Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Product_ManagementLayout.createSequentialGroup()
+                .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Product_ManagementLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addPeripherals)
                             .addComponent(addComputer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(removeComputer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removePeripherals, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(removeLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87))
+                            .addComponent(addMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(Product_ManagementLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel27)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Product_ManagementLayout.createSequentialGroup()
+                        .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removeMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(removeComputer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(removeLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(removePeripherals, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Product_ManagementLayout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addGap(49, 49, 49))))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addMonitor)
-                    .addComponent(removeMonitor))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addLaptop)
-                    .addComponent(removeLaptop))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addComputer)
-                    .addComponent(removeComputer))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPeripherals)
-                    .addComponent(removePeripherals))
-                .addContainerGap(226, Short.MAX_VALUE))
+        Product_ManagementLayout.setVerticalGroup(
+            Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Product_ManagementLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(Product_ManagementLayout.createSequentialGroup()
+                        .addComponent(removeMonitor)
+                        .addGap(30, 30, 30)
+                        .addComponent(removeLaptop)
+                        .addGap(30, 30, 30)
+                        .addComponent(removeComputer)
+                        .addGap(30, 30, 30)
+                        .addComponent(removePeripherals))
+                    .addGroup(Product_ManagementLayout.createSequentialGroup()
+                        .addComponent(addMonitor)
+                        .addGap(30, 30, 30)
+                        .addComponent(addLaptop)
+                        .addGap(30, 30, 30)
+                        .addComponent(addComputer)
+                        .addGap(30, 30, 30)
+                        .addComponent(addPeripherals)))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Διαχείρηση Προιόντων", jPanel3);
+        jTabbedPane1.addTab("Διαχείρηση Προιόντων", Product_Management);
 
-        Mtable.setModel(new javax.swing.table.DefaultTableModel(
+        productstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1031,47 +1054,61 @@ public class Katastima extends javax.swing.JFrame {
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
         });
-        jScrollPane2.setViewportView(Mtable);
+        productstable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                productstableFocusGained(evt);
+            }
+        });
+        jScrollPane2.setViewportView(productstable);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Οθόνες", "Item 2", "Item 3", "Item 4" }));
+        catsel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Οθόνες", "Laptop", "Η/Υ", "Περιφερειακά" }));
+        catsel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catselActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Επιλογή Κατηγορίας");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout StockLayout = new javax.swing.GroupLayout(Stock);
+        Stock.setLayout(StockLayout);
+        StockLayout.setHorizontalGroup(
+            StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StockLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(StockLayout.createSequentialGroup()
+                        .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(catsel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(0, 26, Short.MAX_VALUE))
                     .addComponent(ShowIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+        StockLayout.setVerticalGroup(
+            StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StockLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(StockLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(catsel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(141, 141, 141)
-                        .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 45, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Απόθεμα", jPanel4);
+        jTabbedPane1.addTab("Απόθεμα", Stock);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1100,9 +1137,6 @@ public class Katastima extends javax.swing.JFrame {
         int posotita = (Integer)mposotita.getValue();
         if(!model.isEmpty() && value != -1){
             monitor.add(new Item(model,value,posotita,ficon));
-            Object[] row = {model,value,posotita};
-            DefaultTableModel models = (DefaultTableModel) Mtable.getModel();
-            models.addRow(row);
             ItemsList.setModel(getListModel());
         }
         mmodel.setText("");
@@ -1137,9 +1171,6 @@ public class Katastima extends javax.swing.JFrame {
         int posotita = (Integer)lposotita.getValue();
         if(!model.isEmpty() && value != -1){
             laptop.add(new Item(model,value,posotita,ficon));
-            /*Object[] row = {model,value,posotita};
-            DefaultTableModel models = (DefaultTableModel) Ltable.getModel();
-            models.addRow(row);*/
         }
         lmodel.setText("");
         lvalue.setText("");
@@ -1170,9 +1201,6 @@ public class Katastima extends javax.swing.JFrame {
         int posotita = (Integer)cposotita.getValue();
         if(!model.isEmpty() && value != -1){
             computer.add(new Item(model,value,posotita,ficon));
-            /*Object[] row = {model,value,posotita};
-            DefaultTableModel models = (DefaultTableModel) Ltable.getModel();
-            models.addRow(row);*/
         }
         cmodel.setText("");
         cvalue.setText("");
@@ -1202,9 +1230,6 @@ public class Katastima extends javax.swing.JFrame {
         int posotita = (Integer)pposotita.getValue();
         if(!model.isEmpty() && value != -1){
             peripherals.add(new Item(model,value,posotita,ficon));
-            /*Object[] row = {model,value,posotita};
-            DefaultTableModel models = (DefaultTableModel) Ltable.getModel();
-            models.addRow(row);*/
         }
         pmodel.setText("");
         pvalue.setText("");
@@ -1436,6 +1461,108 @@ public class Katastima extends javax.swing.JFrame {
             }
         }); 
     }//GEN-LAST:event_removePeripheralsActionPerformed
+
+    private void catselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catselActionPerformed
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        String model;
+        float price;
+        int posotita;
+        String selection = catsel.getItemAt(catsel.getSelectedIndex());
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
+        if(selection.equals("Οθόνες")){
+            for(int i = 0; i < monitor.size(); ++i){
+                tempitem = monitor.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);  
+            }
+        }else if(selection.equals("Laptop")){
+                for(int i = 0; i < laptop.size(); ++i){
+                tempitem = laptop.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+            }
+        }else if(selection.equals("Η/Υ")){
+                for(int i = 0; i < computer.size(); ++i){
+                tempitem = computer.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);
+                }
+        }else{
+                for(int i = 0; i < peripherals.size(); ++i){
+                tempitem = peripherals.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+                }
+            }
+    }//GEN-LAST:event_catselActionPerformed
+
+    private void productstableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_productstableFocusGained
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        String model;
+        float price;
+        int posotita;
+        String selection = catsel.getItemAt(catsel.getSelectedIndex());
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
+        if(selection.equals("Οθόνες")){
+            for(int i = 0; i < monitor.size(); ++i){
+                tempitem = monitor.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);  
+            }
+        }else if(selection.equals("Laptop")){
+                for(int i = 0; i < laptop.size(); ++i){
+                tempitem = laptop.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+            }
+        }else if(selection.equals("Η/Υ")){
+                for(int i = 0; i < computer.size(); ++i){
+                tempitem = computer.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);
+                }
+        }else{
+                for(int i = 0; i < peripherals.size(); ++i){
+                tempitem = peripherals.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+                }
+            }
+    }//GEN-LAST:event_productstableFocusGained
     private void removePeripheralItem(){
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
         try{
@@ -1599,11 +1726,14 @@ public class Katastima extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Cart;
     private javax.swing.JFileChooser Chooser;
     private javax.swing.JDialog Dialog;
     private javax.swing.JList<Item> ItemsList;
-    private javax.swing.JTable Mtable;
+    private javax.swing.JPanel Orders;
+    private javax.swing.JPanel Product_Management;
     private javax.swing.JLabel ShowIcon;
+    private javax.swing.JPanel Stock;
     private javax.swing.JButton addComputer;
     private javax.swing.JFrame addComputerTab;
     private javax.swing.JButton addLaptop;
@@ -1612,6 +1742,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JFrame addMonitorTab;
     private javax.swing.JFrame addPeripheralTab;
     private javax.swing.JButton addPeripherals;
+    private javax.swing.JComboBox<String> catsel;
     private javax.swing.JButton cicon;
     private javax.swing.JTextField cmodel;
     private javax.swing.JLabel computerLabel;
@@ -1627,7 +1758,6 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton finalremovemonitor;
     private javax.swing.JButton finalremoveperipheral;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1648,6 +1778,8 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1656,10 +1788,6 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1687,6 +1815,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton picon;
     private javax.swing.JTextField pmodel;
     private javax.swing.JSpinner pposotita;
+    private javax.swing.JTable productstable;
     private javax.swing.JTextField pvalue;
     private javax.swing.JButton removeComputer;
     private javax.swing.JFrame removeComputerTab;
@@ -1701,4 +1830,15 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JTable removemonitortable;
     private javax.swing.JTable removeperipheraltable;
     // End of variables declaration//GEN-END:variables
+
+    private int CheckMaxItems() {
+        int max = laptop.size();
+        if(max < monitor.size())
+            max = monitor.size();
+        if(max < peripherals.size())
+            max = peripherals.size();
+        if(max < computer.size())
+            max = computer.size();
+        return max;
+    }
 }
