@@ -101,6 +101,30 @@ public class Katastima extends javax.swing.JFrame {
         finalremovemonitor = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         monitoricon = new javax.swing.JLabel();
+        removeLaptopTab = new javax.swing.JFrame();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        removelaptoptable = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        laptopLabel = new javax.swing.JLabel();
+        finalremovelaptop = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        laptopicon = new javax.swing.JLabel();
+        removeComputerTab = new javax.swing.JFrame();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        removecomputertable = new javax.swing.JTable();
+        jLabel23 = new javax.swing.JLabel();
+        computerLabel = new javax.swing.JLabel();
+        finalremovecomputer = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        computericon = new javax.swing.JLabel();
+        removePeripheralTab = new javax.swing.JFrame();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        removeperipheraltable = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
+        peripheralLabel = new javax.swing.JLabel();
+        finalremoveperipheral = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        peripheralicon = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -277,7 +301,7 @@ public class Katastima extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        addComputerTab.setTitle("Προσθήκη Ηλεκτρονικού Υπολογιστή");
+        addComputerTab.setTitle("Προσθήκη Η/Υ");
 
         cposotita.setRequestFocusEnabled(false);
         cposotita.setValue(1);
@@ -530,6 +554,267 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(monitoricon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        removeLaptopTab.setTitle("Αφαίρεση Laptop");
+        removeLaptopTab.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                removeLaptopTabWindowClosing(evt);
+            }
+        });
+
+        removelaptoptable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Μοντέλο", "Αξία", "Ποσότητα"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        });
+        removelaptoptable.setCellSelectionEnabled(false);
+        jScrollPane5.setViewportView(removelaptoptable);
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel21.setText("Επιλεξτέ το Laptop που θέλετε να αφαιρέσετε");
+
+        laptopLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        laptopLabel.setText("Κανένα Laptop ακόμα");
+
+        finalremovelaptop.setText("Αφαίρεση Laptop");
+        finalremovelaptop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalremovelaptopActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel22.setText("Επιλέξατε το Laptop");
+
+        javax.swing.GroupLayout removeLaptopTabLayout = new javax.swing.GroupLayout(removeLaptopTab.getContentPane());
+        removeLaptopTab.getContentPane().setLayout(removeLaptopTabLayout);
+        removeLaptopTabLayout.setHorizontalGroup(
+            removeLaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(removeLaptopTabLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel21)
+                .addContainerGap(158, Short.MAX_VALUE))
+            .addGroup(removeLaptopTabLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(removeLaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(laptopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(removeLaptopTabLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(finalremovelaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(laptopicon, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        removeLaptopTabLayout.setVerticalGroup(
+            removeLaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeLaptopTabLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(removeLaptopTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeLaptopTabLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laptopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finalremovelaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(removeLaptopTabLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laptopicon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        removeComputerTab.setTitle("Αφαίρεση Η/Υ");
+        removeComputerTab.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                removeComputerTabWindowClosing(evt);
+            }
+        });
+
+        removecomputertable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Μοντέλο", "Αξία", "Ποσότητα"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        });
+        removecomputertable.setCellSelectionEnabled(false);
+        jScrollPane6.setViewportView(removecomputertable);
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel23.setText("Επιλεξτέ τον Η/Υ που θέλετε να αφαιρέσετε");
+
+        computerLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        computerLabel.setText("Κανένας Η/Υ ακόμα");
+
+        finalremovecomputer.setText("Αφαίρεση Η/Υ");
+        finalremovecomputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalremovecomputerActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel24.setText("Επιλέξατε τον Η/Υ");
+
+        javax.swing.GroupLayout removeComputerTabLayout = new javax.swing.GroupLayout(removeComputerTab.getContentPane());
+        removeComputerTab.getContentPane().setLayout(removeComputerTabLayout);
+        removeComputerTabLayout.setHorizontalGroup(
+            removeComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(removeComputerTabLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel23)
+                .addContainerGap(174, Short.MAX_VALUE))
+            .addGroup(removeComputerTabLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(removeComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(computerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(removeComputerTabLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(finalremovecomputer, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(computericon, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        removeComputerTabLayout.setVerticalGroup(
+            removeComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeComputerTabLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(removeComputerTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeComputerTabLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(computerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finalremovecomputer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removeComputerTabLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(computericon, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+
+        removePeripheralTab.setTitle("Αφαίρεση Περιφερειακού");
+        removePeripheralTab.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                removePeripheralTabWindowClosing(evt);
+            }
+        });
+
+        removeperipheraltable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Μοντέλο", "Αξία", "Ποσότητα"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        });
+        removeperipheraltable.setCellSelectionEnabled(false);
+        jScrollPane7.setViewportView(removeperipheraltable);
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel25.setText("Επιλεξτέ το περιφερειακό που θέλετε να αφαιρέσετε");
+
+        peripheralLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        peripheralLabel.setText("Κανένα περιφερειακό ακόμα");
+
+        finalremoveperipheral.setText("Αφαίρεση Περιφερειακού");
+        finalremoveperipheral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalremoveperipheralActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel26.setText("Επιλέξατε το περιφερειακό");
+
+        javax.swing.GroupLayout removePeripheralTabLayout = new javax.swing.GroupLayout(removePeripheralTab.getContentPane());
+        removePeripheralTab.getContentPane().setLayout(removePeripheralTabLayout);
+        removePeripheralTabLayout.setHorizontalGroup(
+            removePeripheralTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(removePeripheralTabLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(removePeripheralTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(peripheralLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(removePeripheralTabLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(finalremoveperipheral, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(peripheralicon, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(removePeripheralTabLayout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jLabel25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        removePeripheralTabLayout.setVerticalGroup(
+            removePeripheralTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removePeripheralTabLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(removePeripheralTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removePeripheralTabLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(peripheralLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finalremoveperipheral, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removePeripheralTabLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(peripheralicon, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Κατάστημα");
         setIconImage(logo.getImage());
@@ -657,8 +942,18 @@ public class Katastima extends javax.swing.JFrame {
         });
 
         removeLaptop.setText("Αφαίρεση Laptop");
+        removeLaptop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeLaptopActionPerformed(evt);
+            }
+        });
 
         removeComputer.setText("Αφαίρεση Η/Υ");
+        removeComputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeComputerActionPerformed(evt);
+            }
+        });
 
         addPeripherals.setText("Προσθήκη Περιφερειακών");
         addPeripherals.addActionListener(new java.awt.event.ActionListener() {
@@ -668,6 +963,11 @@ public class Katastima extends javax.swing.JFrame {
         });
 
         removePeripherals.setText("Αφαιρεσή Περιφερειακών");
+        removePeripherals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removePeripheralsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -927,7 +1227,6 @@ public class Katastima extends javax.swing.JFrame {
         String model;
         float price;
         int posotita;
-        ImageIcon tempicon;
         int i;
         for(i = 0; i < monitor.size(); ++i){
             tempitem = monitor.get(i);
@@ -946,7 +1245,6 @@ public class Katastima extends javax.swing.JFrame {
         sel = removemonitortable.getSelectedRows();
          if(sel.length > 0){
                 tempitem = monitor.get(sel[0]);
-                System.out.println(tempitem);
                 monitorLabel.setText(tempitem.getName());
                 monitoricon.setIcon(resize(tempitem.getImage()));
 
@@ -974,27 +1272,248 @@ public class Katastima extends javax.swing.JFrame {
        if(monitorLabel.getText().equals("Καμία οθόνη ακόμα")){
             JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποια οθόνη","Διαγραφή Οθόνης",JOptionPane.WARNING_MESSAGE);
         }else{
-            JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή της οθόνης;","Διαγραφή Οθόνης",JOptionPane.YES_NO_OPTION);
-            int res = JOptionPane.YES_OPTION;
-            if(res == 0)
+            int res = JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή της οθόνης;","Διαγραφή Οθόνης",JOptionPane.YES_NO_OPTION);
+            if(res == JOptionPane.YES_OPTION){
                 removeMonitorItem();
-        }
+        }}
         
     }//GEN-LAST:event_finalremovemonitorActionPerformed
+
+    private void finalremovelaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovelaptopActionPerformed
+        if(laptopLabel.getText().equals("Κανένα Laptop ακόμα")){
+            JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιo Laptop","Διαγραφή Laptop",JOptionPane.WARNING_MESSAGE);
+        }else{
+            int res = JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή του Laptop;","Διαγραφή Laptop",JOptionPane.YES_NO_OPTION);
+            if(res == JOptionPane.YES_OPTION)
+                removeLaptopItem();
+        }
+    }//GEN-LAST:event_finalremovelaptopActionPerformed
+
+    private void removeLaptopTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeLaptopTabWindowClosing
+        DefaultTableModel modelm = (DefaultTableModel) removelaptoptable.getModel();
+        int j;
+        try{
+            for(j = 0; j < laptop.size();j++){
+                        modelm.removeRow(0);
+            }
+            laptopLabel.setText("Κανένα Laptop ακόμα");
+            laptopicon.setIcon(resize(noimage));
+        }catch(ArrayIndexOutOfBoundsException e){
+            
+        }
+    }//GEN-LAST:event_removeLaptopTabWindowClosing
+
+    private void removeLaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLaptopActionPerformed
+        DefaultTableModel modelm = (DefaultTableModel) removelaptoptable.getModel();
+        String model;
+        float price;
+        int posotita;
+        int i;
+        for(i = 0; i < laptop.size(); ++i){
+            tempitem = laptop.get(i);
+            model = tempitem.getName();
+            price = tempitem.getPrice();
+            posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        ListSelectionModel listModel = removelaptoptable.getSelectionModel();
+        listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        removeLaptopTab.setSize(700,450);
+        removeLaptopTab.setLocationRelativeTo(null);
+        removeLaptopTab.setVisible(true);
+        listModel.addListSelectionListener((ListSelectionEvent e) -> {
+        sel = removelaptoptable.getSelectedRows();
+         if(sel.length > 0){
+                tempitem = laptop.get(sel[0]);
+                laptopLabel.setText(tempitem.getName());
+                laptopicon.setIcon(resize(tempitem.getImage()));
+
+            }
+        });  
+    }//GEN-LAST:event_removeLaptopActionPerformed
+
+    private void finalremovecomputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovecomputerActionPerformed
+        if(computerLabel.getText().equals("Κανένας Η/Υ ακόμα")){
+            JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιoν Η/Υ","Διαγραφή H/Y",JOptionPane.WARNING_MESSAGE);
+        }else{
+            int res = JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή του Η/Υ;","Διαγραφή Η/Υ",JOptionPane.YES_NO_OPTION);
+            if(res == JOptionPane.YES_OPTION)
+                removeComputerItem();
+        }
+    }//GEN-LAST:event_finalremovecomputerActionPerformed
+
+    private void removeComputerTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeComputerTabWindowClosing
+        DefaultTableModel modelm = (DefaultTableModel) removecomputertable.getModel();
+        int j;
+        try{
+            for(j = 0; j < computer.size();j++){
+                        modelm.removeRow(0);
+            }
+            computerLabel.setText("Κανένας Η/Υ ακόμα");
+            computericon.setIcon(resize(noimage));
+        }catch(ArrayIndexOutOfBoundsException e){
+            
+        }
+    }//GEN-LAST:event_removeComputerTabWindowClosing
+
+    private void removeComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeComputerActionPerformed
+        DefaultTableModel modelm = (DefaultTableModel) removecomputertable.getModel();
+        String model;
+        float price;
+        int posotita;
+        int i;
+        for(i = 0; i < computer.size(); ++i){
+            tempitem = computer.get(i);
+            model = tempitem.getName();
+            price = tempitem.getPrice();
+            posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        ListSelectionModel listModel = removecomputertable.getSelectionModel();
+        listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        removeComputerTab.setSize(700,450);
+        removeComputerTab.setLocationRelativeTo(null);
+        removeComputerTab.setVisible(true);
+        listModel.addListSelectionListener((ListSelectionEvent e) -> {
+        sel = removecomputertable.getSelectedRows();
+         if(sel.length > 0){
+                tempitem = computer.get(sel[0]);
+                computerLabel.setText(tempitem.getName());
+                computericon.setIcon(resize(tempitem.getImage()));
+            }
+        }); 
+    }//GEN-LAST:event_removeComputerActionPerformed
+
+    private void finalremoveperipheralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremoveperipheralActionPerformed
+        if(peripheralLabel.getText().equals("Κανένα περιφερειακό ακόμ")){
+            JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιoν Η/Υ","Διαγραφή H/Y",JOptionPane.WARNING_MESSAGE);
+        }else{
+            int res = JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή του Η/Υ;","Διαγραφή Η/Υ",JOptionPane.YES_NO_OPTION);
+            if(res == JOptionPane.YES_OPTION)
+                removePeripheralItem();
+        }
+    }//GEN-LAST:event_finalremoveperipheralActionPerformed
+
+    private void removePeripheralTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removePeripheralTabWindowClosing
+        DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
+        int j;
+        try{
+            for(j = 0; j < peripherals.size();j++){
+                        modelm.removeRow(0);
+            }
+            peripheralLabel.setText("Κανένα περιφερειακό ακόμα");
+            peripheralicon.setIcon(resize(noimage));
+        }catch(ArrayIndexOutOfBoundsException e){}
+    }//GEN-LAST:event_removePeripheralTabWindowClosing
+
+    private void removePeripheralsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePeripheralsActionPerformed
+        DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
+        String model;
+        float price;
+        int posotita;
+        int i;
+        for(i = 0; i < peripherals.size(); ++i){
+            tempitem = peripherals.get(i);
+            model = tempitem.getName();
+            price = tempitem.getPrice();
+            posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        ListSelectionModel listModel = removeperipheraltable.getSelectionModel();
+        listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        removePeripheralTab.setSize(700,450);
+        removePeripheralTab.setLocationRelativeTo(null);
+        removePeripheralTab.setVisible(true);
+        listModel.addListSelectionListener((ListSelectionEvent e) -> {
+        sel = removeperipheraltable.getSelectedRows();
+         if(sel.length > 0){
+                tempitem = peripherals.get(sel[0]);
+                peripheralLabel.setText(tempitem.getName());
+                peripheralicon.setIcon(resize(tempitem.getImage()));
+            }
+        }); 
+    }//GEN-LAST:event_removePeripheralsActionPerformed
+    private void removePeripheralItem(){
+        DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
+        try{
+                peripherals.remove(sel[0]);
+                sel[0]=0;
+                peripheralLabel.setText("Κανένα περιφερειακό ακόμα");
+                peripheralicon.setIcon(resize(noimage));
+                
+        int j;
+        for(j = 0; j <= peripherals.size();j++){
+                    modelm.removeRow(0);
+        }
+        for(j = 0; j <= peripherals.size();j++){
+            tempitem = peripherals.get(j);
+            String model = tempitem.getName();
+            float price = tempitem.getPrice();
+            int posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        }catch(IndexOutOfBoundsException e){}       
+    }    
+    private void removeComputerItem(){
+        DefaultTableModel modelm = (DefaultTableModel) removecomputertable.getModel();
+        try{
+                computer.remove(sel[0]);
+                sel[0]=0;
+                computerLabel.setText("Κανένας Η/Υ ακόμα");
+                computericon.setIcon(resize(noimage));
+                
+        int j;
+        for(j = 0; j <= computer.size();j++){
+                    modelm.removeRow(0);
+        }
+        for(j = 0; j <= computer.size();j++){
+            tempitem = computer.get(j);
+            String model = tempitem.getName();
+            float price = tempitem.getPrice();
+            int posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        }catch(IndexOutOfBoundsException e){}       
+    }     
+    private void removeLaptopItem(){
+        DefaultTableModel modelm = (DefaultTableModel) removelaptoptable.getModel();
+        try{
+                laptop.remove(sel[0]);
+                sel[0]=0;
+                laptopLabel.setText("Κανένα Laptop ακόμα");
+                laptopicon.setIcon(resize(noimage));
+                
+        int j;
+        for(j = 0; j <= laptop.size();j++){
+                    modelm.removeRow(0);
+        }
+        for(j = 0; j <= laptop.size();j++){
+            tempitem = laptop.get(j);
+            String model = tempitem.getName();
+            float price = tempitem.getPrice();
+            int posotita = tempitem.getPosotita();
+            Object[] row = {model,price,posotita};
+            modelm.addRow(row);
+        }
+        }catch(IndexOutOfBoundsException e){}  
+    }    
     private void removeMonitorItem(){
         DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
         try{
-                System.out.println(monitor);
                 monitor.remove(sel[0]);
                 sel[0]=0;
                 monitorLabel.setText("Καμία οθόνη ακόμα");
-                System.out.println(monitor);
-                
+                monitoricon.setIcon(resize(noimage));
         int j;
-        for(j = 0; j < monitor.size();j++){
+        for(j = 0; j <= monitor.size();j++){
                     modelm.removeRow(0);
         }
-        for(j = 0; j < monitor.size()-1;j++){
+        for(j = 0; j <= monitor.size();j++){
             tempitem = monitor.get(j);
             String model = tempitem.getName();
             float price = tempitem.getPrice();
@@ -1002,11 +1521,7 @@ public class Katastima extends javax.swing.JFrame {
             Object[] row = {model,price,posotita};
             modelm.addRow(row);
         }
-        }catch(IndexOutOfBoundsException e){
-                
-        }
-        
-        
+        }catch(IndexOutOfBoundsException e){}  
     }
     private void ImageChooser(){
         int res = Chooser.showSaveDialog(micon);
@@ -1066,10 +1581,11 @@ public class Katastima extends javax.swing.JFrame {
     //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
     public ImageIcon resize(ImageIcon icon){
         Image img = icon.getImage();
-        Image newImg = img.getScaledInstance(monitoricon.getWidth(), monitoricon.getHeight(), Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(260, 160, Image.SCALE_SMOOTH);
         ImageIcon newimage = new ImageIcon(newImg);
         return newimage;
     }
+
     
     private DefaultListModel getListModel() {
         
@@ -1098,13 +1614,18 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton addPeripherals;
     private javax.swing.JButton cicon;
     private javax.swing.JTextField cmodel;
+    private javax.swing.JLabel computerLabel;
+    private javax.swing.JLabel computericon;
     private javax.swing.JSpinner cposotita;
     private javax.swing.JTextField cvalue;
     private javax.swing.JButton finaladdcomputer;
     private javax.swing.JButton finaladdlaptop;
     private javax.swing.JButton finaladdmonitor;
     private javax.swing.JButton finaladdperipheral;
+    private javax.swing.JButton finalremovecomputer;
+    private javax.swing.JButton finalremovelaptop;
     private javax.swing.JButton finalremovemonitor;
+    private javax.swing.JButton finalremoveperipheral;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1121,6 +1642,12 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1137,9 +1664,14 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel laptopLabel;
+    private javax.swing.JLabel laptopicon;
     private javax.swing.JButton licon;
     private javax.swing.JTextField lmodel;
     private javax.swing.JSpinner lposotita;
@@ -1150,15 +1682,23 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel monitoricon;
     private javax.swing.JSpinner mposotita;
     private javax.swing.JTextField mvalue;
+    private javax.swing.JLabel peripheralLabel;
+    private javax.swing.JLabel peripheralicon;
     private javax.swing.JButton picon;
     private javax.swing.JTextField pmodel;
     private javax.swing.JSpinner pposotita;
     private javax.swing.JTextField pvalue;
     private javax.swing.JButton removeComputer;
+    private javax.swing.JFrame removeComputerTab;
     private javax.swing.JButton removeLaptop;
+    private javax.swing.JFrame removeLaptopTab;
     private javax.swing.JButton removeMonitor;
     private javax.swing.JFrame removeMonitorTab;
+    private javax.swing.JFrame removePeripheralTab;
     private javax.swing.JButton removePeripherals;
+    private javax.swing.JTable removecomputertable;
+    private javax.swing.JTable removelaptoptable;
     private javax.swing.JTable removemonitortable;
+    private javax.swing.JTable removeperipheraltable;
     // End of variables declaration//GEN-END:variables
 }
