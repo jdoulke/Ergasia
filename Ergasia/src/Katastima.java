@@ -9,7 +9,14 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
+import com.sun.tools.javac.Main;
 import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -32,27 +39,24 @@ public class Katastima extends javax.swing.JFrame {
     ArrayList<Item> computer = new ArrayList<>();
     ArrayList<Item> peripherals = new ArrayList<>();
     ArrayList<String> client = new ArrayList<>();
-    
-    
-    
+        
     FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG and JPEG images", "png", "jpg", "jpeg");
+    
+//File List
+      
+    String path = null;
+    
     ImageIcon ficon = new ImageIcon("src/DefaultImage/noimage.png");
     ImageIcon noimage = new ImageIcon("src/DefaultImage/noimage.png");
-    BufferedImage image = null;
     ImageIcon logo = new ImageIcon("src/DefaultImage/Shop.png");
+    
+    
+    BufferedImage image = null;
+
     Item tempitem;
+    
     int[] sel;
     int[] sel2;
-    
-    Item monitor1 = new Item("monitor1",149,10,noimage);
-    Item monitor2 = new Item("monitor2",119,20,noimage);
-    Item monitor3 = new Item("monitor3",179,30,noimage);
-    Item monitor4 = new Item("monitor4",159,40,noimage);
-    Item laptop1 = new Item("Laptop1",110,10,noimage);
-    Item laptop2 = new Item("Laptop2",180,20,noimage);
-    Item laptop3 = new Item("Laptop3",150,6,noimage);
-    Item laptop4 = new Item("Laptop4",140,50,noimage);
-    
 
     public Katastima() {
         initComponents();
@@ -136,6 +140,7 @@ public class Katastima extends javax.swing.JFrame {
         finalremoveperipheral = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
         peripheralicon = new javax.swing.JLabel();
+        chooser = new javax.swing.JFileChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Cart = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -166,8 +171,13 @@ public class Katastima extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ShowIcon = new javax.swing.JLabel();
         changestockbutton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        Save = new javax.swing.JMenuItem();
+        Import = new javax.swing.JMenuItem();
 
         addMonitorTab.setTitle("Προσθήκη Οθόνης");
+        addMonitorTab.setResizable(false);
 
         mposotita.setRequestFocusEnabled(false);
         mposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));
@@ -242,6 +252,7 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         addLaptopTab.setTitle("Προσθήκη Laptop");
+        addLaptopTab.setResizable(false);
 
         lposotita.setRequestFocusEnabled(false);
         lposotita.setValue(1);
@@ -317,6 +328,7 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         addComputerTab.setTitle("Προσθήκη Η/Υ");
+        addComputerTab.setResizable(false);
 
         cposotita.setRequestFocusEnabled(false);
         cposotita.setValue(1);
@@ -392,6 +404,7 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         addPeripheralTab.setTitle("Προσθήκη Περιφερειακού");
+        addPeripheralTab.setResizable(false);
 
         pposotita.setRequestFocusEnabled(false);
         pposotita.setValue(1);
@@ -483,6 +496,7 @@ public class Katastima extends javax.swing.JFrame {
         Chooser.setAcceptAllFileFilterUsed(false);
 
         removeMonitorTab.setTitle("Αφαίρεση Οθόνης");
+        removeMonitorTab.setResizable(false);
         removeMonitorTab.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 removeMonitorTabWindowClosing(evt);
@@ -570,6 +584,7 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         removeLaptopTab.setTitle("Αφαίρεση Laptop");
+        removeLaptopTab.setResizable(false);
         removeLaptopTab.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 removeLaptopTabWindowClosing(evt);
@@ -657,6 +672,7 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         removeComputerTab.setTitle("Αφαίρεση Η/Υ");
+        removeComputerTab.setResizable(false);
         removeComputerTab.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 removeComputerTabWindowClosing(evt);
@@ -744,6 +760,7 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         removePeripheralTab.setTitle("Αφαίρεση Περιφερειακού");
+        removePeripheralTab.setResizable(false);
         removePeripheralTab.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 removePeripheralTabWindowClosing(evt);
@@ -830,6 +847,9 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(peripheralicon, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Κατάστημα");
         setIconImage(logo.getImage());
@@ -866,7 +886,7 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(CartLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                     .addGroup(CartLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -924,7 +944,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Παραγγελίες", Orders);
@@ -1046,7 +1066,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(addComputer)
                         .addGap(30, 30, 30)
                         .addComponent(addPeripherals)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", Product_Management);
@@ -1137,11 +1157,11 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(catsel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(StockLayout.createSequentialGroup()
                                 .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(54, Short.MAX_VALUE))
+                                .addContainerGap(43, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StockLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(stockspinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1151,6 +1171,28 @@ public class Katastima extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Απόθεμα", Stock);
+
+        jMenu1.setText("Αρχείο");
+
+        Save.setText("Αποθήκευση δεδομένων");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Save);
+
+        Import.setText("Εισαγωγή δεδομένων");
+        Import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImportActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Import);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1759,6 +1801,126 @@ public class Katastima extends javax.swing.JFrame {
         stockspinner.setValue(1);
          
     }//GEN-LAST:event_changestockbuttonActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        chooser.setDialogTitle("Επιλέξτε φάκελο για την Αποθήκευση των δεδομένων");
+        int option = chooser.showSaveDialog(micon);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = chooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+            File monitorfilename = new File(path,"Monitors Name.txt");
+            File monitorfileprice = new File(path,"Monitors Price.txt");
+            File monitorfileposotita = new File(path,"Monitors Posotita.txt");
+            File monitorfileimage = new File(path,"Monitors Image.txt");
+            File laptopfilename = new File(path,"Laptops Name.txt");
+            File laptopfileprice = new File(path,"Laptops Price.txt");
+            File laptopfileposotita = new File(path,"Laptops Posotita.txt");
+            File laptopfileimage = new File(path,"Laptops Image.txt");
+            File computerfilename = new File(path,"Computers Name.txt");
+            File computerfileprice = new File(path,"Computers Price.txt");
+            File computerfileposotita = new File(path,"Computers Posotita.txt");
+            File computerfileimage = new File(path,"Computers Image.txt");
+            File peripheralsfilename = new File(path,"Peripherals Name.txt");
+            File peripheralsfileprice = new File(path,"Peripherals Price.txt");
+            File peripheralsfileposotita = new File(path,"Peripherals Posotita.txt");
+            File peripheralsfileimage = new File(path,"Peripherals Image.txt");
+        try{
+            FileWriter fwm1 = new FileWriter(monitorfilename);
+            FileWriter fwm2 = new FileWriter(monitorfileprice);
+            FileWriter fwm3 = new FileWriter(monitorfileposotita);
+            FileWriter fwm4 = new FileWriter(monitorfileimage);
+        
+            FileWriter fwl1 = new FileWriter(laptopfilename);
+            FileWriter fwl2 = new FileWriter(laptopfileprice);
+            FileWriter fwl3 = new FileWriter(laptopfileposotita);
+            FileWriter fwl4 = new FileWriter(laptopfileimage);
+        
+            FileWriter fwc1 = new FileWriter(computerfilename);
+            FileWriter fwc2 = new FileWriter(computerfileprice);
+            FileWriter fwc3 = new FileWriter(computerfileposotita);
+            FileWriter fwc4 = new FileWriter(computerfileimage);
+        
+            FileWriter fwp1 = new FileWriter(peripheralsfilename);
+            FileWriter fwp2 = new FileWriter(peripheralsfileprice);
+            FileWriter fwp3 = new FileWriter(peripheralsfileposotita);
+            FileWriter fwp4 = new FileWriter(peripheralsfileimage);
+        
+            Writer output1 = new BufferedWriter(fwm1);
+            Writer output2 = new BufferedWriter(fwm2);
+            Writer output3 = new BufferedWriter(fwm3);
+            Writer output4 = new BufferedWriter(fwm4);
+        
+            int i;
+            if(!monitor.isEmpty()){
+                for (i = 0; i < monitor.size(); i++) {
+                    output1.write(monitor.get(i).getName() + "\n");
+                    output2.write(monitor.get(i).getPrice() + "\n");
+                    output3.write(monitor.get(i).getPosotita() + "\n");
+                    output4.write(monitor.get(i).getImage() + "\n");
+                }
+            }
+            output1.close();
+            output2.close();
+            output3.close();
+            output4.close();
+            output1 = new BufferedWriter(fwl1);
+            output2 = new BufferedWriter(fwl2);
+            output3 = new BufferedWriter(fwl3);
+            output4 = new BufferedWriter(fwl4);
+            if(!laptop.isEmpty()){
+                for (i = 0; i < laptop.size(); i++) {
+                    output1.write(laptop.get(i).getName() + "\n");
+                    output2.write(laptop.get(i).getPrice() + "\n");
+                    output3.write(laptop.get(i).getPosotita() + "\n");
+                    output4.write(laptop.get(i).getImage() + "\n");
+                }
+            }
+            output1.close();
+            output2.close();
+            output3.close();
+            output4.close();
+            output1 = new BufferedWriter(fwc1);
+            output2 = new BufferedWriter(fwc2);
+            output3 = new BufferedWriter(fwc3);
+            output4 = new BufferedWriter(fwc4);
+            if(!computer.isEmpty()){
+                for (i = 0; i < computer.size(); i++) {
+                    output1.write(computer.get(i).getName() + "\n");
+                    output2.write(computer.get(i).getPrice() + "\n");
+                    output3.write(computer.get(i).getPosotita() + "\n");
+                    output4.write(computer.get(i).getImage() + "\n");
+                }
+            }
+            output1.close();
+            output2.close();
+            output3.close();
+            output4.close();
+            output1 = new BufferedWriter(fwp1);
+            output2 = new BufferedWriter(fwp2);
+            output3 = new BufferedWriter(fwp3);
+            output4 = new BufferedWriter(fwp4);
+            if(!peripherals.isEmpty()){
+                for (i = 0; i < peripherals.size(); i++) {
+                    output1.write(peripherals.get(i).getName() + "\n");
+                    output2.write(peripherals.get(i).getPrice() + "\n");
+                    output3.write(peripherals.get(i).getPosotita() + "\n");
+                    output4.write(peripherals.get(i).getImage() + "\n");
+                }
+            }
+            output1.close();
+            output2.close();
+            output3.close();
+            output4.close();    
+        }
+        catch(IOException e) {
+            JOptionPane.showMessageDialog(null,"File cannot be created");
+        }
+        }
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
+            loadItems();
+    }//GEN-LAST:event_ImportActionPerformed
     private void removePeripheralItem(){
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
         try{
@@ -1856,7 +2018,6 @@ public class Katastima extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(Dialog, " No File Choosen","Input Error",JOptionPane.PLAIN_MESSAGE);
         }   
     }
-    
     private float CheckTextFieldForNumber(String text){
         float value = -1;
             try {
@@ -1894,11 +2055,92 @@ public class Katastima extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Katastima().setVisible(true);               
             }
         });
+    }
+    public void loadItems(){
+        chooser.setDialogTitle("Επιλέξτε φάκελο για την Εισαγωγή των δεδομένων");
+        int option = chooser.showOpenDialog(micon);
+        if (option == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = chooser.getSelectedFile();
+        path = selectedFile.getAbsolutePath();
+        String name;
+        float price;
+        int posotita;
+        ImageIcon image2;
+        try {
+            BufferedReader input1 = new BufferedReader(new FileReader(path+"\\Monitors Name.txt"));
+            BufferedReader input2 = new BufferedReader(new FileReader(path+"\\Monitors Price.txt"));
+            BufferedReader input3 = new BufferedReader(new FileReader(path+"\\Monitors Posotita.txt"));
+            BufferedReader input4 = new BufferedReader(new FileReader(path+"\\Monitors Image.txt"));
+            for(int i =0; i < monitor.size();i++){
+                monitor.remove(0);
+            }
+            while ((name = input1.readLine()) != null) {
+                price = Float.parseFloat(input2.readLine());
+                posotita = Integer.parseInt(input3.readLine());
+                image2 = new ImageIcon(input4.readLine());             
+                monitor.add(new Item(name,price,posotita,image2));
+            }
+            input1.close();
+            input2.close();
+            input3.close();
+            input4.close();
+            input1 = new BufferedReader(new FileReader(path+"\\Laptops Name.txt"));
+            input2 = new BufferedReader(new FileReader(path+"\\Laptops Price.txt"));
+            input3 = new BufferedReader(new FileReader(path+"\\Laptops Posotita.txt"));
+            input4 = new BufferedReader(new FileReader(path+"\\Laptops Image.txt"));
+            for(int i =0; i < laptop.size();i++){
+                laptop.remove(0);
+            }            
+            while ((name = input1.readLine()) != null) { 
+                price = Float.parseFloat(input2.readLine());
+                posotita = Integer.parseInt(input3.readLine());
+                image2 = new ImageIcon(input4.readLine());             
+                laptop.add(new Item(name,price,posotita,image2));
+            }
+            input1.close();
+            input2.close();
+            input3.close();
+            input4.close();
+            input1 = new BufferedReader(new FileReader(path+"\\Computers Name.txt"));
+            input2 = new BufferedReader(new FileReader(path+"\\Computers Price.txt"));
+            input3 = new BufferedReader(new FileReader(path+"\\Computers Posotita.txt"));
+            input4 = new BufferedReader(new FileReader(path+"\\Computers Image.txt"));
+            for(int i =0; i < computer.size();i++){
+                computer.remove(0);
+            }            
+            while ((name = input1.readLine()) != null) {
+                price = Float.parseFloat(input2.readLine());
+                posotita = Integer.parseInt(input3.readLine());
+                image2 = new ImageIcon(input4.readLine());             
+                computer.add(new Item(name,price,posotita,image2));
+            }
+            input1.close();
+            input2.close();
+            input3.close();
+            input4.close();
+            input1 = new BufferedReader(new FileReader(path+"\\Peripherals Name.txt"));
+            input2 = new BufferedReader(new FileReader(path+"\\Peripherals Price.txt"));
+            input3 = new BufferedReader(new FileReader(path+"\\Peripherals Posotita.txt"));
+            input4 = new BufferedReader(new FileReader(path+"\\Peripherals Image.txt"));
+            for(int i =0; i < peripherals.size();i++){
+                peripherals.remove(0);
+            }            
+            while ((name = input1.readLine()) != null) {
+                price = Float.parseFloat(input2.readLine());
+                posotita = Integer.parseInt(input3.readLine());
+                image2 = new ImageIcon(input4.readLine());             
+                peripherals.add(new Item(name,price,posotita,image2));
+            }   
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"Δεν μπόρεσαν να βρεθούν τα αρχεία.");
+        }
+        }
     }
     //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
     public ImageIcon resize(ImageIcon icon){
@@ -1906,9 +2148,7 @@ public class Katastima extends javax.swing.JFrame {
         Image newImg = img.getScaledInstance(260, 160, Image.SCALE_SMOOTH);
         ImageIcon newimage = new ImageIcon(newImg);
         return newimage;
-    }
-
-    
+    }   
     private DefaultListModel getListModel() {
         
         DefaultListModel listModel = new DefaultListModel<>();
@@ -1924,9 +2164,11 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JPanel Cart;
     private javax.swing.JFileChooser Chooser;
     private javax.swing.JDialog Dialog;
+    private javax.swing.JMenuItem Import;
     private javax.swing.JList<Item> ItemsList;
     private javax.swing.JPanel Orders;
     private javax.swing.JPanel Product_Management;
+    private javax.swing.JMenuItem Save;
     private javax.swing.JLabel ShowIcon;
     private javax.swing.JPanel Stock;
     private javax.swing.JButton addComputer;
@@ -1939,6 +2181,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton addPeripherals;
     private javax.swing.JComboBox<String> catsel;
     private javax.swing.JButton changestockbutton;
+    private javax.swing.JFileChooser chooser;
     private javax.swing.JButton cicon;
     private javax.swing.JTextField cmodel;
     private javax.swing.JLabel computerLabel;
@@ -1983,6 +2226,8 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
