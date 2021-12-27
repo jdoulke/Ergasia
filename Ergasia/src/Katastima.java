@@ -10,8 +10,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
 import java.awt.Image;
-import java.awt.List;
-import static java.util.Collections.list;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -36,6 +34,7 @@ public class Katastima extends javax.swing.JFrame {
     ArrayList<String> client = new ArrayList<>();
     
     
+    
     FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG and JPEG images", "png", "jpg", "jpeg");
     ImageIcon ficon = new ImageIcon("src/DefaultImage/noimage.png");
     ImageIcon noimage = new ImageIcon("src/DefaultImage/noimage.png");
@@ -43,6 +42,17 @@ public class Katastima extends javax.swing.JFrame {
     ImageIcon logo = new ImageIcon("src/DefaultImage/Shop.png");
     Item tempitem;
     int[] sel;
+    int[] sel2;
+    
+    Item monitor1 = new Item("monitor1",149,10,noimage);
+    Item monitor2 = new Item("monitor2",119,20,noimage);
+    Item monitor3 = new Item("monitor3",179,30,noimage);
+    Item monitor4 = new Item("monitor4",159,40,noimage);
+    Item laptop1 = new Item("Laptop1",110,10,noimage);
+    Item laptop2 = new Item("Laptop2",180,20,noimage);
+    Item laptop3 = new Item("Laptop3",150,6,noimage);
+    Item laptop4 = new Item("Laptop4",140,50,noimage);
+    
 
     public Katastima() {
         initComponents();
@@ -152,8 +162,10 @@ public class Katastima extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         productstable = new javax.swing.JTable();
         catsel = new javax.swing.JComboBox<>();
+        stockspinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         ShowIcon = new javax.swing.JLabel();
+        changestockbutton = new javax.swing.JButton();
 
         addMonitorTab.setTitle("Προσθήκη Οθόνης");
 
@@ -845,7 +857,7 @@ public class Katastima extends javax.swing.JFrame {
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
                     .addComponent(jComboBox3, 0, 207, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
@@ -854,7 +866,7 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(CartLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                     .addGroup(CartLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -900,7 +912,7 @@ public class Katastima extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         OrdersLayout.setVerticalGroup(
             OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -912,7 +924,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Παραγγελίες", Orders);
@@ -986,16 +998,16 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(Product_ManagementLayout.createSequentialGroup()
                 .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Product_ManagementLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel27))
+                    .addGroup(Product_ManagementLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addPeripherals)
                             .addComponent(addComputer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addLaptop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(Product_ManagementLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel27)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                            .addComponent(addMonitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
                 .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Product_ManagementLayout.createSequentialGroup()
                         .addGroup(Product_ManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1039,6 +1051,12 @@ public class Katastima extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", Product_Management);
 
+        Stock.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                StockFocusGained(evt);
+            }
+        });
+
         productstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1072,8 +1090,19 @@ public class Katastima extends javax.swing.JFrame {
             }
         });
 
+        stockspinner.setRequestFocusEnabled(false);
+        stockspinner.setValue(1);
+        cposotita.setModel(new javax.swing.SpinnerNumberModel(1,1,null,1));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Επιλογή Κατηγορίας");
+
+        changestockbutton.setText("Αλλαγή Αποθέματος");
+        changestockbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changestockbuttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout StockLayout = new javax.swing.GroupLayout(Stock);
         Stock.setLayout(StockLayout);
@@ -1083,13 +1112,17 @@ public class Katastima extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(StockLayout.createSequentialGroup()
+                        .addComponent(stockspinner, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(ShowIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(StockLayout.createSequentialGroup()
                         .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(catsel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(0, 26, Short.MAX_VALUE))
-                    .addComponent(ShowIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(changestockbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         StockLayout.setVerticalGroup(
@@ -1097,15 +1130,24 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(StockLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(StockLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(StockLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(catsel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(141, 141, 141)
-                        .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 45, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(StockLayout.createSequentialGroup()
+                                .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(54, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StockLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(stockspinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(changestockbutton)
+                                .addGap(24, 24, 24))))))
         );
 
         jTabbedPane1.addTab("Απόθεμα", Stock);
@@ -1252,6 +1294,7 @@ public class Katastima extends javax.swing.JFrame {
         String model;
         float price;
         int posotita;
+        
         int i;
         for(i = 0; i < monitor.size(); ++i){
             tempitem = monitor.get(i);
@@ -1275,6 +1318,13 @@ public class Katastima extends javax.swing.JFrame {
 
             }
         });
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
     }//GEN-LAST:event_removeMonitorActionPerformed
 
     private void removeMonitorTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeMonitorTabWindowClosing
@@ -1284,11 +1334,10 @@ public class Katastima extends javax.swing.JFrame {
             for(j = 0; j < monitor.size();j++){
                         modelm.removeRow(0);
             }
+        }catch(ArrayIndexOutOfBoundsException e){}
             monitorLabel.setText("Καμία οθόνη ακόμα");
             monitoricon.setIcon(resize(noimage));
-        }catch(ArrayIndexOutOfBoundsException e){
-            
-        }
+        
         
     }//GEN-LAST:event_removeMonitorTabWindowClosing
 
@@ -1321,11 +1370,9 @@ public class Katastima extends javax.swing.JFrame {
             for(j = 0; j < laptop.size();j++){
                         modelm.removeRow(0);
             }
+        }catch(ArrayIndexOutOfBoundsException e){}
             laptopLabel.setText("Κανένα Laptop ακόμα");
             laptopicon.setIcon(resize(noimage));
-        }catch(ArrayIndexOutOfBoundsException e){
-            
-        }
     }//GEN-LAST:event_removeLaptopTabWindowClosing
 
     private void removeLaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLaptopActionPerformed
@@ -1355,7 +1402,14 @@ public class Katastima extends javax.swing.JFrame {
                 laptopicon.setIcon(resize(tempitem.getImage()));
 
             }
-        });  
+        });
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
     }//GEN-LAST:event_removeLaptopActionPerformed
 
     private void finalremovecomputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovecomputerActionPerformed
@@ -1375,9 +1429,10 @@ public class Katastima extends javax.swing.JFrame {
             for(j = 0; j < computer.size();j++){
                         modelm.removeRow(0);
             }
+        }catch(ArrayIndexOutOfBoundsException e){
             computerLabel.setText("Κανένας Η/Υ ακόμα");
             computericon.setIcon(resize(noimage));
-        }catch(ArrayIndexOutOfBoundsException e){
+        
             
         }
     }//GEN-LAST:event_removeComputerTabWindowClosing
@@ -1409,6 +1464,13 @@ public class Katastima extends javax.swing.JFrame {
                 computericon.setIcon(resize(tempitem.getImage()));
             }
         }); 
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
     }//GEN-LAST:event_removeComputerActionPerformed
 
     private void finalremoveperipheralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremoveperipheralActionPerformed
@@ -1428,9 +1490,10 @@ public class Katastima extends javax.swing.JFrame {
             for(j = 0; j < peripherals.size();j++){
                         modelm.removeRow(0);
             }
+        }catch(ArrayIndexOutOfBoundsException e){}
             peripheralLabel.setText("Κανένα περιφερειακό ακόμα");
             peripheralicon.setIcon(resize(noimage));
-        }catch(ArrayIndexOutOfBoundsException e){}
+        
     }//GEN-LAST:event_removePeripheralTabWindowClosing
 
     private void removePeripheralsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePeripheralsActionPerformed
@@ -1562,7 +1625,140 @@ public class Katastima extends javax.swing.JFrame {
                 modelss.addRow(row); 
                 }
             }
+        ListSelectionModel listModel = productstable.getSelectionModel();
+        listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listModel.addListSelectionListener((ListSelectionEvent e) -> {
+        sel2 = productstable.getSelectedRows();});
     }//GEN-LAST:event_productstableFocusGained
+
+    private void StockFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StockFocusGained
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        String model;
+        float price;
+        int posotita;
+        String selection = catsel.getItemAt(catsel.getSelectedIndex());
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
+        try{
+            if(selection.equals("Οθόνες")){
+            for(int i = 0; i < monitor.size(); ++i){
+                tempitem = monitor.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);  
+            }
+        }else if(selection.equals("Laptop")){
+                for(int i = 0; i < laptop.size(); ++i){
+                tempitem = laptop.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+            }
+        }else if(selection.equals("Η/Υ")){
+                for(int i = 0; i < computer.size(); ++i){
+                tempitem = computer.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);
+                }
+        }else{
+                for(int i = 0; i < peripherals.size(); ++i){
+                tempitem = peripherals.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+                }
+            }
+    }catch(ArrayIndexOutOfBoundsException e){}
+    }//GEN-LAST:event_StockFocusGained
+
+    private void changestockbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changestockbuttonActionPerformed
+        String selection = catsel.getItemAt(catsel.getSelectedIndex());
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        String model;
+        float price;
+        int posotita;
+        int stocknumber = (int) stockspinner.getValue();
+        try{
+         if(sel2.length > 0){
+            if(selection.equals("Οθόνες")){  
+                tempitem = monitor.get(sel2[0]);
+                tempitem.setPosotita(stocknumber);
+            }
+            else if(selection.equals("Laptop")){
+                tempitem = laptop.get(sel2[0]);
+                tempitem.setPosotita(stocknumber);
+            }
+            else if(selection.equals("Η/Υ")){
+                tempitem = computer.get(sel2[0]);   
+                tempitem.setPosotita(stocknumber);
+            }
+            else{
+                tempitem = peripherals.get(sel2[0]);
+                tempitem.setPosotita(stocknumber);
+            }
+         }
+        }catch(ArrayIndexOutOfBoundsException e){}
+        int max = CheckMaxItems();
+        try{
+                for(int j = 0; j < max;j++){
+                modelss.removeRow(0);
+                }
+        }catch(ArrayIndexOutOfBoundsException e){}
+        try{
+            if(selection.equals("Οθόνες")){
+            for(int i = 0; i < monitor.size(); ++i){
+                tempitem = monitor.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);  
+            }
+        }else if(selection.equals("Laptop")){
+                for(int i = 0; i < laptop.size(); ++i){
+                tempitem = laptop.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+            }
+        }else if(selection.equals("Η/Υ")){
+                for(int i = 0; i < computer.size(); ++i){
+                tempitem = computer.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row);
+                }
+        }else{
+                for(int i = 0; i < peripherals.size(); ++i){
+                tempitem = peripherals.get(i);
+                model = tempitem.getName();
+                price = tempitem.getPrice();
+                posotita = tempitem.getPosotita();
+                Object[] row = {model,price,posotita};
+                modelss.addRow(row); 
+                }
+            }
+    }catch(ArrayIndexOutOfBoundsException e){}
+        stockspinner.setValue(1);
+         
+    }//GEN-LAST:event_changestockbuttonActionPerformed
     private void removePeripheralItem(){
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
         try{
@@ -1697,7 +1893,6 @@ public class Katastima extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Katastima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-               
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1743,6 +1938,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JFrame addPeripheralTab;
     private javax.swing.JButton addPeripherals;
     private javax.swing.JComboBox<String> catsel;
+    private javax.swing.JButton changestockbutton;
     private javax.swing.JButton cicon;
     private javax.swing.JTextField cmodel;
     private javax.swing.JLabel computerLabel;
@@ -1829,6 +2025,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JTable removelaptoptable;
     private javax.swing.JTable removemonitortable;
     private javax.swing.JTable removeperipheraltable;
+    private javax.swing.JSpinner stockspinner;
     // End of variables declaration//GEN-END:variables
 
     private int CheckMaxItems() {
