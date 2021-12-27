@@ -1808,109 +1808,46 @@ public class Katastima extends javax.swing.JFrame {
         if (option == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-            File monitorfilename = new File(path,"Monitors Name.txt");
-            File monitorfileprice = new File(path,"Monitors Price.txt");
-            File monitorfileposotita = new File(path,"Monitors Posotita.txt");
-            File monitorfileimage = new File(path,"Monitors Image.txt");
-            File laptopfilename = new File(path,"Laptops Name.txt");
-            File laptopfileprice = new File(path,"Laptops Price.txt");
-            File laptopfileposotita = new File(path,"Laptops Posotita.txt");
-            File laptopfileimage = new File(path,"Laptops Image.txt");
-            File computerfilename = new File(path,"Computers Name.txt");
-            File computerfileprice = new File(path,"Computers Price.txt");
-            File computerfileposotita = new File(path,"Computers Posotita.txt");
-            File computerfileimage = new File(path,"Computers Image.txt");
-            File peripheralsfilename = new File(path,"Peripherals Name.txt");
-            File peripheralsfileprice = new File(path,"Peripherals Price.txt");
-            File peripheralsfileposotita = new File(path,"Peripherals Posotita.txt");
-            File peripheralsfileimage = new File(path,"Peripherals Image.txt");
+            File monitorfile = new File(path,"Monitors.txt");
+            File laptopfile= new File(path,"Laptops.txt");
+            File computerfile = new File(path,"Computers.txt");
+            File peripheralsfile = new File(path,"Peripherals.txt");
         try{
-            FileWriter fwm1 = new FileWriter(monitorfilename);
-            FileWriter fwm2 = new FileWriter(monitorfileprice);
-            FileWriter fwm3 = new FileWriter(monitorfileposotita);
-            FileWriter fwm4 = new FileWriter(monitorfileimage);
-        
-            FileWriter fwl1 = new FileWriter(laptopfilename);
-            FileWriter fwl2 = new FileWriter(laptopfileprice);
-            FileWriter fwl3 = new FileWriter(laptopfileposotita);
-            FileWriter fwl4 = new FileWriter(laptopfileimage);
-        
-            FileWriter fwc1 = new FileWriter(computerfilename);
-            FileWriter fwc2 = new FileWriter(computerfileprice);
-            FileWriter fwc3 = new FileWriter(computerfileposotita);
-            FileWriter fwc4 = new FileWriter(computerfileimage);
-        
-            FileWriter fwp1 = new FileWriter(peripheralsfilename);
-            FileWriter fwp2 = new FileWriter(peripheralsfileprice);
-            FileWriter fwp3 = new FileWriter(peripheralsfileposotita);
-            FileWriter fwp4 = new FileWriter(peripheralsfileimage);
-        
-            Writer output1 = new BufferedWriter(fwm1);
-            Writer output2 = new BufferedWriter(fwm2);
-            Writer output3 = new BufferedWriter(fwm3);
-            Writer output4 = new BufferedWriter(fwm4);
+            FileWriter fwm = new FileWriter(monitorfile);
+            FileWriter fwl = new FileWriter(laptopfile);      
+            FileWriter fwc = new FileWriter(computerfile); 
+            FileWriter fwp = new FileWriter(peripheralsfile);     
+            
+            Writer output = new BufferedWriter(fwm);
         
             int i;
             if(!monitor.isEmpty()){
                 for (i = 0; i < monitor.size(); i++) {
-                    output1.write(monitor.get(i).getName() + "\n");
-                    output2.write(monitor.get(i).getPrice() + "\n");
-                    output3.write(monitor.get(i).getPosotita() + "\n");
-                    output4.write(monitor.get(i).getImage() + "\n");
+                    output.write(monitor.get(i).Save()+ "\n");
                 }
             }
-            output1.close();
-            output2.close();
-            output3.close();
-            output4.close();
-            output1 = new BufferedWriter(fwl1);
-            output2 = new BufferedWriter(fwl2);
-            output3 = new BufferedWriter(fwl3);
-            output4 = new BufferedWriter(fwl4);
+            output.close();
+            output = new BufferedWriter(fwl);
             if(!laptop.isEmpty()){
                 for (i = 0; i < laptop.size(); i++) {
-                    output1.write(laptop.get(i).getName() + "\n");
-                    output2.write(laptop.get(i).getPrice() + "\n");
-                    output3.write(laptop.get(i).getPosotita() + "\n");
-                    output4.write(laptop.get(i).getImage() + "\n");
+                    output.write(laptop.get(i).Save()+ "\n");
                 }
             }
-            output1.close();
-            output2.close();
-            output3.close();
-            output4.close();
-            output1 = new BufferedWriter(fwc1);
-            output2 = new BufferedWriter(fwc2);
-            output3 = new BufferedWriter(fwc3);
-            output4 = new BufferedWriter(fwc4);
+            output.close();
+            output = new BufferedWriter(fwc);
             if(!computer.isEmpty()){
                 for (i = 0; i < computer.size(); i++) {
-                    output1.write(computer.get(i).getName() + "\n");
-                    output2.write(computer.get(i).getPrice() + "\n");
-                    output3.write(computer.get(i).getPosotita() + "\n");
-                    output4.write(computer.get(i).getImage() + "\n");
+                    output.write(computer.get(i).Save() + "\n");
                 }
             }
-            output1.close();
-            output2.close();
-            output3.close();
-            output4.close();
-            output1 = new BufferedWriter(fwp1);
-            output2 = new BufferedWriter(fwp2);
-            output3 = new BufferedWriter(fwp3);
-            output4 = new BufferedWriter(fwp4);
+            output.close();
+            output = new BufferedWriter(fwp);
             if(!peripherals.isEmpty()){
                 for (i = 0; i < peripherals.size(); i++) {
-                    output1.write(peripherals.get(i).getName() + "\n");
-                    output2.write(peripherals.get(i).getPrice() + "\n");
-                    output3.write(peripherals.get(i).getPosotita() + "\n");
-                    output4.write(peripherals.get(i).getImage() + "\n");
+                    output.write(peripherals.get(i).Save() + "\n");
                 }
             }
-            output1.close();
-            output2.close();
-            output3.close();
-            output4.close();    
+            output.close(); 
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(null,"File cannot be created");
@@ -2068,75 +2005,63 @@ public class Katastima extends javax.swing.JFrame {
         if (option == JFileChooser.APPROVE_OPTION) {
         File selectedFile = chooser.getSelectedFile();
         path = selectedFile.getAbsolutePath();
+        String item;
         String name;
         float price;
         int posotita;
         ImageIcon image2;
         try {
-            BufferedReader input1 = new BufferedReader(new FileReader(path+"\\Monitors Name.txt"));
-            BufferedReader input2 = new BufferedReader(new FileReader(path+"\\Monitors Price.txt"));
-            BufferedReader input3 = new BufferedReader(new FileReader(path+"\\Monitors Posotita.txt"));
-            BufferedReader input4 = new BufferedReader(new FileReader(path+"\\Monitors Image.txt"));
+            BufferedReader input = new BufferedReader(new FileReader(path+"\\Monitors.txt"));
             for(int i =0; i < monitor.size();i++){
                 monitor.remove(0);
             }
-            while ((name = input1.readLine()) != null) {
-                price = Float.parseFloat(input2.readLine());
-                posotita = Integer.parseInt(input3.readLine());
-                image2 = new ImageIcon(input4.readLine());             
+            while ((item = input.readLine()) != null) {
+                String[] temp = item.split(";");
+                name = temp[0];
+                price = Float.parseFloat(temp[1]);
+                posotita = Integer.parseInt(temp[2]);
+                image2 = new ImageIcon(temp[3]);
                 monitor.add(new Item(name,price,posotita,image2));
             }
-            input1.close();
-            input2.close();
-            input3.close();
-            input4.close();
-            input1 = new BufferedReader(new FileReader(path+"\\Laptops Name.txt"));
-            input2 = new BufferedReader(new FileReader(path+"\\Laptops Price.txt"));
-            input3 = new BufferedReader(new FileReader(path+"\\Laptops Posotita.txt"));
-            input4 = new BufferedReader(new FileReader(path+"\\Laptops Image.txt"));
+            input.close();
+            input = new BufferedReader(new FileReader(path+"\\Laptops.txt"));
             for(int i =0; i < laptop.size();i++){
                 laptop.remove(0);
             }            
-            while ((name = input1.readLine()) != null) { 
-                price = Float.parseFloat(input2.readLine());
-                posotita = Integer.parseInt(input3.readLine());
-                image2 = new ImageIcon(input4.readLine());             
+            while ((item = input.readLine()) != null) {
+                String[] temp = item.split(";");
+                name = temp[0];
+                price = Float.parseFloat(temp[1]);
+                posotita = Integer.parseInt(temp[2]);
+                image2 = new ImageIcon(temp[3]);
                 laptop.add(new Item(name,price,posotita,image2));
             }
-            input1.close();
-            input2.close();
-            input3.close();
-            input4.close();
-            input1 = new BufferedReader(new FileReader(path+"\\Computers Name.txt"));
-            input2 = new BufferedReader(new FileReader(path+"\\Computers Price.txt"));
-            input3 = new BufferedReader(new FileReader(path+"\\Computers Posotita.txt"));
-            input4 = new BufferedReader(new FileReader(path+"\\Computers Image.txt"));
+            input.close();
+            input = new BufferedReader(new FileReader(path+"\\Computers.txt"));
             for(int i =0; i < computer.size();i++){
                 computer.remove(0);
             }            
-            while ((name = input1.readLine()) != null) {
-                price = Float.parseFloat(input2.readLine());
-                posotita = Integer.parseInt(input3.readLine());
-                image2 = new ImageIcon(input4.readLine());             
+            while ((item = input.readLine()) != null) {
+                String[] temp = item.split(";");
+                name = temp[0];
+                price = Float.parseFloat(temp[1]);
+                posotita = Integer.parseInt(temp[2]);
+                image2 = new ImageIcon(temp[3]);
                 computer.add(new Item(name,price,posotita,image2));
             }
-            input1.close();
-            input2.close();
-            input3.close();
-            input4.close();
-            input1 = new BufferedReader(new FileReader(path+"\\Peripherals Name.txt"));
-            input2 = new BufferedReader(new FileReader(path+"\\Peripherals Price.txt"));
-            input3 = new BufferedReader(new FileReader(path+"\\Peripherals Posotita.txt"));
-            input4 = new BufferedReader(new FileReader(path+"\\Peripherals Image.txt"));
+            input.close();
+            input = new BufferedReader(new FileReader(path+"\\Peripherals.txt"));
             for(int i =0; i < peripherals.size();i++){
                 peripherals.remove(0);
             }            
-            while ((name = input1.readLine()) != null) {
-                price = Float.parseFloat(input2.readLine());
-                posotita = Integer.parseInt(input3.readLine());
-                image2 = new ImageIcon(input4.readLine());             
+            while ((item = input.readLine()) != null) {
+                String[] temp = item.split(";");
+                name = temp[0];
+                price = Float.parseFloat(temp[1]);
+                posotita = Integer.parseInt(temp[2]);
+                image2 = new ImageIcon(temp[3]);
                 peripherals.add(new Item(name,price,posotita,image2));
-            }   
+            }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null,"Δεν μπόρεσαν να βρεθούν τα αρχεία.");
         }

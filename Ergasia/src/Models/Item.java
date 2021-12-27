@@ -44,6 +44,9 @@ public class Item {
     public String toString() {
         return model + " " + price;
     }
+    public String Save(){
+        return model + ";" + price + ";"+ posotita + ";" + image;
+    }
 }
 
 
