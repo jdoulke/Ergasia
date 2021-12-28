@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
 import View.ItemRenderer;
-import com.sun.tools.javac.Main;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,6 +20,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import View.ItemRenderer;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -1236,21 +1236,17 @@ public class Katastima extends javax.swing.JFrame {
         mposotita.setValue(1);
         ficon = new ImageIcon("src/DefaultImage/noimage.png");
     }//GEN-LAST:event_finaladdmonitorActionPerformed
-
     private void miconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miconActionPerformed
         ImageChooser();
     }//GEN-LAST:event_miconActionPerformed
-
     private void addMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMonitorActionPerformed
         addMonitorTab.setSize(330,300);
         addMonitorTab.setLocationRelativeTo(null);
         addMonitorTab.setVisible(true);
     }//GEN-LAST:event_addMonitorActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void finaladdlaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdlaptopActionPerformed
         String model = lmodel.getText();
         float value = -1;
@@ -1270,17 +1266,14 @@ public class Katastima extends javax.swing.JFrame {
         ficon = new ImageIcon("src/DefaultImage/noimage.png");
     
     }//GEN-LAST:event_finaladdlaptopActionPerformed
-
     private void liconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liconActionPerformed
        ImageChooser();
     }//GEN-LAST:event_liconActionPerformed
-
     private void addLaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLaptopActionPerformed
         addLaptopTab.setSize(330,300);
         addLaptopTab.setLocationRelativeTo(null);
         addLaptopTab.setVisible(true);
     }//GEN-LAST:event_addLaptopActionPerformed
-
     private void finaladdcomputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdcomputerActionPerformed
         String model = cmodel.getText();
         float value = -1;
@@ -1299,17 +1292,14 @@ public class Katastima extends javax.swing.JFrame {
         cposotita.setValue(1);
         ficon = new ImageIcon("src/DefaultImage/noimage.png");
     }//GEN-LAST:event_finaladdcomputerActionPerformed
-
     private void ciconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciconActionPerformed
          ImageChooser();      
     }//GEN-LAST:event_ciconActionPerformed
-
     private void addComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addComputerActionPerformed
         addComputerTab.setSize(330,330);
         addComputerTab.setLocationRelativeTo(null);
         addComputerTab.setVisible(true);
     }//GEN-LAST:event_addComputerActionPerformed
-
     private void finaladdperipheralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finaladdperipheralActionPerformed
         String model = pmodel.getText();
         float value = -1;
@@ -1328,32 +1318,19 @@ public class Katastima extends javax.swing.JFrame {
         pposotita.setValue(1);
         ficon = new ImageIcon("src/DefaultImage/noimage.png");
     }//GEN-LAST:event_finaladdperipheralActionPerformed
-
     private void piconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piconActionPerformed
         ImageChooser();
     }//GEN-LAST:event_piconActionPerformed
-
     private void addPeripheralsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPeripheralsActionPerformed
         addPeripheralTab.setSize(330,330);
         addPeripheralTab.setLocationRelativeTo(null);
         addPeripheralTab.setVisible(true);
     }//GEN-LAST:event_addPeripheralsActionPerformed
-
     private void removeMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMonitorActionPerformed
         DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
-        String model;
-        float price;
-        int posotita;
-        
         int i;
-        for(i = 0; i < monitor.size(); ++i){
-            tempitem = monitor.get(i);
-            model = tempitem.getName();
-            price = tempitem.getPrice();
-            posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
+        for(i = 0; i < monitor.size(); ++i)
+            addRow(tempitem,monitor,i,modelm); 
         ListSelectionModel listModel = removemonitortable.getSelectionModel();
         listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         removeMonitorTab.setSize(700,450);
@@ -1365,32 +1342,23 @@ public class Katastima extends javax.swing.JFrame {
                 tempitem = monitor.get(sel[0]);
                 monitorLabel.setText(tempitem.getName());
                 monitoricon.setIcon(resize(tempitem.getImage()));
-
             }
         });
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
     }//GEN-LAST:event_removeMonitorActionPerformed
-
     private void removeMonitorTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeMonitorTabWindowClosing
         DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
-        int j;
-        try{
-            for(j = 0; j < monitor.size();j++){
-                        modelm.removeRow(0);
-            }
-        }catch(ArrayIndexOutOfBoundsException e){}
-            monitorLabel.setText("Καμία οθόνη ακόμα");
-            monitoricon.setIcon(resize(noimage));
-        
-        
+        if(modelm.getRowCount() > 0){
+            for(int j = modelm.getRowCount()-1; j >-1;--j)
+                modelm.removeRow(j);        
+        }
+        monitorLabel.setText("Καμία οθόνη ακόμα");
+        monitoricon.setIcon(resize(noimage));        
     }//GEN-LAST:event_removeMonitorTabWindowClosing
-
     @SuppressWarnings("SuspiciousIndentAfterControlStatement")
     private void finalremovemonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovemonitorActionPerformed
        if(monitorLabel.getText().equals("Καμία οθόνη ακόμα")){
@@ -1400,9 +1368,7 @@ public class Katastima extends javax.swing.JFrame {
             if(res == JOptionPane.YES_OPTION){
                 removeMonitorItem();
         }}
-        
     }//GEN-LAST:event_finalremovemonitorActionPerformed
-
     private void finalremovelaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovelaptopActionPerformed
         if(laptopLabel.getText().equals("Κανένα Laptop ακόμα")){
             JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιo Laptop","Διαγραφή Laptop",JOptionPane.WARNING_MESSAGE);
@@ -1412,33 +1378,20 @@ public class Katastima extends javax.swing.JFrame {
                 removeLaptopItem();
         }
     }//GEN-LAST:event_finalremovelaptopActionPerformed
-
     private void removeLaptopTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeLaptopTabWindowClosing
         DefaultTableModel modelm = (DefaultTableModel) removelaptoptable.getModel();
-        int j;
-        try{
-            for(j = 0; j < laptop.size();j++){
-                        modelm.removeRow(0);
-            }
-        }catch(ArrayIndexOutOfBoundsException e){}
-            laptopLabel.setText("Κανένα Laptop ακόμα");
-            laptopicon.setIcon(resize(noimage));
+        if(modelm.getRowCount() > 0){
+            for(int j = modelm.getRowCount()-1; j >-1;--j)
+                modelm.removeRow(j);        
+        }
+        laptopLabel.setText("Κανένα Laptop ακόμα");
+        laptopicon.setIcon(resize(noimage));
     }//GEN-LAST:event_removeLaptopTabWindowClosing
-
     private void removeLaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLaptopActionPerformed
         DefaultTableModel modelm = (DefaultTableModel) removelaptoptable.getModel();
-        String model;
-        float price;
-        int posotita;
         int i;
-        for(i = 0; i < laptop.size(); ++i){
-            tempitem = laptop.get(i);
-            model = tempitem.getName();
-            price = tempitem.getPrice();
-            posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
+        for(i = 0; i < laptop.size(); ++i)
+            addRow(tempitem,laptop,i,modelm);
         ListSelectionModel listModel = removelaptoptable.getSelectionModel();
         listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         removeLaptopTab.setSize(700,450);
@@ -1450,18 +1403,14 @@ public class Katastima extends javax.swing.JFrame {
                 tempitem = laptop.get(sel[0]);
                 laptopLabel.setText(tempitem.getName());
                 laptopicon.setIcon(resize(tempitem.getImage()));
-
             }
         });
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
     }//GEN-LAST:event_removeLaptopActionPerformed
-
     private void finalremovecomputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremovecomputerActionPerformed
         if(computerLabel.getText().equals("Κανένας Η/Υ ακόμα")){
             JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιoν Η/Υ","Διαγραφή H/Y",JOptionPane.WARNING_MESSAGE);
@@ -1471,36 +1420,20 @@ public class Katastima extends javax.swing.JFrame {
                 removeComputerItem();
         }
     }//GEN-LAST:event_finalremovecomputerActionPerformed
-
     private void removeComputerTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removeComputerTabWindowClosing
         DefaultTableModel modelm = (DefaultTableModel) removecomputertable.getModel();
-        int j;
-        try{
-            for(j = 0; j < computer.size();j++){
-                        modelm.removeRow(0);
-            }
-        }catch(ArrayIndexOutOfBoundsException e){
-            computerLabel.setText("Κανένας Η/Υ ακόμα");
-            computericon.setIcon(resize(noimage));
-        
-            
+        if(modelm.getRowCount() > 0){
+            for(int j = modelm.getRowCount()-1; j >-1;--j)
+                modelm.removeRow(j);        
         }
+        computerLabel.setText("Κανένας Η/Υ ακόμα");
+        computericon.setIcon(resize(noimage));    
     }//GEN-LAST:event_removeComputerTabWindowClosing
-
     private void removeComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeComputerActionPerformed
         DefaultTableModel modelm = (DefaultTableModel) removecomputertable.getModel();
-        String model;
-        float price;
-        int posotita;
         int i;
-        for(i = 0; i < computer.size(); ++i){
-            tempitem = computer.get(i);
-            model = tempitem.getName();
-            price = tempitem.getPrice();
-            posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
+        for(i = 0; i < computer.size(); ++i)
+            addRow(tempitem,computer,i,modelm);
         ListSelectionModel listModel = removecomputertable.getSelectionModel();
         listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         removeComputerTab.setSize(700,450);
@@ -1515,50 +1448,35 @@ public class Katastima extends javax.swing.JFrame {
             }
         }); 
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
     }//GEN-LAST:event_removeComputerActionPerformed
-
     private void finalremoveperipheralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalremoveperipheralActionPerformed
-        if(peripheralLabel.getText().equals("Κανένα περιφερειακό ακόμ")){
-            JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιoν Η/Υ","Διαγραφή H/Y",JOptionPane.WARNING_MESSAGE);
+        if(peripheralLabel.getText().equals("Κανένα περιφερειακό ακόμα")){
+            JOptionPane.showMessageDialog(Dialog, "Δεν έχετε επιλέξει κάποιo περιφερειακό","Διαγραφή περιφερειακού",JOptionPane.WARNING_MESSAGE);
         }else{
-            int res = JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή του Η/Υ;","Διαγραφή Η/Υ",JOptionPane.YES_NO_OPTION);
+            int res = JOptionPane.showConfirmDialog(Dialog, "Είστε σίγουρος πως θέλετε να πραγματοποιήσετε διαγραφή του περιφερειακού;","Διαγραφή περιφερειακού",JOptionPane.YES_NO_OPTION);
             if(res == JOptionPane.YES_OPTION)
                 removePeripheralItem();
         }
     }//GEN-LAST:event_finalremoveperipheralActionPerformed
-
     private void removePeripheralTabWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_removePeripheralTabWindowClosing
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
         int j;
-        try{
-            for(j = 0; j < peripherals.size();j++){
-                        modelm.removeRow(0);
-            }
-        }catch(ArrayIndexOutOfBoundsException e){}
+        if(modelm.getRowCount() > 0){
+            for(j = modelm.getRowCount()-1; j >-1;--j)
+                modelm.removeRow(j);        
+        }
             peripheralLabel.setText("Κανένα περιφερειακό ακόμα");
-            peripheralicon.setIcon(resize(noimage));
-        
+            peripheralicon.setIcon(resize(noimage));   
     }//GEN-LAST:event_removePeripheralTabWindowClosing
-
     private void removePeripheralsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePeripheralsActionPerformed
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
-        String model;
-        float price;
-        int posotita;
         int i;
         for(i = 0; i < peripherals.size(); ++i){
-            tempitem = peripherals.get(i);
-            model = tempitem.getName();
-            price = tempitem.getPrice();
-            posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
+            addRow(tempitem,peripherals,i,modelm);
         }
         ListSelectionModel listModel = removeperipheraltable.getSelectionModel();
         listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -1574,242 +1492,115 @@ public class Katastima extends javax.swing.JFrame {
             }
         }); 
     }//GEN-LAST:event_removePeripheralsActionPerformed
-
     private void catselActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catselActionPerformed
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        String model;
-        float price;
-        int posotita;
         String selection = catsel.getItemAt(catsel.getSelectedIndex());
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
         if(selection.equals("Οθόνες")){
-            for(int i = 0; i < monitor.size(); ++i){
-                tempitem = monitor.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);  
-            }
+            for(int i = 0; i < monitor.size(); ++i)
+                addRow(tempitem,monitor,i,modelss);
         }else if(selection.equals("Laptop")){
-                for(int i = 0; i < laptop.size(); ++i){
-                tempitem = laptop.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-            }
+            for(int i = 0; i < laptop.size(); ++i)
+                addRow(tempitem,laptop,i,modelss);
         }else if(selection.equals("Η/Υ")){
-                for(int i = 0; i < computer.size(); ++i){
-                tempitem = computer.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);
-                }
+            for(int i = 0; i < computer.size(); ++i)
+                addRow(tempitem,computer,i,modelss);
         }else{
-                for(int i = 0; i < peripherals.size(); ++i){
-                tempitem = peripherals.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-                }
+            for(int i = 0; i < peripherals.size(); ++i)
+                addRow(tempitem,peripherals,i,modelss);
             }
     }//GEN-LAST:event_catselActionPerformed
-
     private void productstableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_productstableFocusGained
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        String model;
-        float price;
-        int posotita;
         String selection = catsel.getItemAt(catsel.getSelectedIndex());
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
         if(selection.equals("Οθόνες")){
-            for(int i = 0; i < monitor.size(); ++i){
-                tempitem = monitor.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);  
-            }
+            for(int i = 0; i < monitor.size(); ++i)
+                addRow(tempitem,monitor,i,modelss);
         }else if(selection.equals("Laptop")){
-                for(int i = 0; i < laptop.size(); ++i){
-                tempitem = laptop.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-            }
+            for(int i = 0; i < laptop.size(); ++i)
+                addRow(tempitem,laptop,i,modelss);
         }else if(selection.equals("Η/Υ")){
-                for(int i = 0; i < computer.size(); ++i){
-                tempitem = computer.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);
-                }
+            for(int i = 0; i < computer.size(); ++i)
+                addRow(tempitem,computer,i,modelss);
         }else{
-                for(int i = 0; i < peripherals.size(); ++i){
-                tempitem = peripherals.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-                }
+            for(int i = 0; i < peripherals.size(); ++i)
+                addRow(tempitem,peripherals,i,modelss);
             }
         ListSelectionModel listModel = productstable.getSelectionModel();
         listModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listModel.addListSelectionListener((ListSelectionEvent e) -> {
         sel2 = productstable.getSelectedRows();});
     }//GEN-LAST:event_productstableFocusGained
-
     private void StockFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_StockFocusGained
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        String model;
-        float price;
-        int posotita;
         String selection = catsel.getItemAt(catsel.getSelectedIndex());
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
-        try{
-            if(selection.equals("Οθόνες")){
-            for(int i = 0; i < monitor.size(); ++i){
-                tempitem = monitor.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);  
-            }
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
+        if(selection.equals("Οθόνες")){
+            for(int i = 0; i < monitor.size(); ++i)
+                addRow(tempitem,monitor,i,modelss);
         }else if(selection.equals("Laptop")){
-                for(int i = 0; i < laptop.size(); ++i){
-                tempitem = laptop.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-            }
+            for(int i = 0; i < laptop.size(); ++i)
+                addRow(tempitem,laptop,i,modelss);
         }else if(selection.equals("Η/Υ")){
-                for(int i = 0; i < computer.size(); ++i){
-                tempitem = computer.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);
-                }
+            for(int i = 0; i < computer.size(); ++i)
+                addRow(tempitem,computer,i,modelss);
         }else{
-                for(int i = 0; i < peripherals.size(); ++i){
-                tempitem = peripherals.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-                }
+            for(int i = 0; i < peripherals.size(); ++i)
+                addRow(tempitem,peripherals,i,modelss);
             }
-    }catch(ArrayIndexOutOfBoundsException e){}
     }//GEN-LAST:event_StockFocusGained
-
+    private void addRow(Item tempitem,ArrayList<Item> list,int i,DefaultTableModel modelss){
+        tempitem = list.get(i);
+        String model = tempitem.getName();
+        float price = tempitem.getPrice();
+        int posotita = tempitem.getPosotita();
+        Object[] row = {model,price,posotita};
+        modelss.addRow(row);
+    }
     private void changestockbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changestockbuttonActionPerformed
         String selection = catsel.getItemAt(catsel.getSelectedIndex());
         DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
-        String model;
-        float price;
-        int posotita;
         int stocknumber = (int) stockspinner.getValue();
-        try{
          if(sel2.length > 0){
-            if(selection.equals("Οθόνες")){  
-                tempitem = monitor.get(sel2[0]);
-                tempitem.setPosotita(stocknumber);
-            }
-            else if(selection.equals("Laptop")){
-                tempitem = laptop.get(sel2[0]);
-                tempitem.setPosotita(stocknumber);
-            }
-            else if(selection.equals("Η/Υ")){
-                tempitem = computer.get(sel2[0]);   
-                tempitem.setPosotita(stocknumber);
-            }
+            if(selection.equals("Οθόνες"))
+                monitor.get(sel2[0]).setPosotita(stocknumber);
+            else if(selection.equals("Laptop"))
+                laptop.get(sel2[0]).setPosotita(stocknumber);
+            else if(selection.equals("Η/Υ"))
+                computer.get(sel2[0]).setPosotita(stocknumber);
             else{
-                tempitem = peripherals.get(sel2[0]);
-                tempitem.setPosotita(stocknumber);
+                peripherals.get(sel2[0]).setPosotita(stocknumber);
             }
          }
-        }catch(ArrayIndexOutOfBoundsException e){}
-        int max = CheckMaxItems();
-        try{
-                for(int j = 0; j < max;j++){
-                modelss.removeRow(0);
-                }
-        }catch(ArrayIndexOutOfBoundsException e){}
-        try{
-            if(selection.equals("Οθόνες")){
-            for(int i = 0; i < monitor.size(); ++i){
-                tempitem = monitor.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);  
-            }
+        if(modelss.getRowCount() > 0){
+            for(int j = modelss.getRowCount()-1; j >-1;--j)
+                modelss.removeRow(j);        
+        }
+        if(selection.equals("Οθόνες")){
+            for(int i = 0; i < monitor.size(); ++i)
+                addRow(tempitem,monitor,i,modelss);
         }else if(selection.equals("Laptop")){
-                for(int i = 0; i < laptop.size(); ++i){
-                tempitem = laptop.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-            }
+            for(int i = 0; i < laptop.size(); ++i)
+                addRow(tempitem,laptop,i,modelss);
         }else if(selection.equals("Η/Υ")){
-                for(int i = 0; i < computer.size(); ++i){
-                tempitem = computer.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row);
-                }
+            for(int i = 0; i < computer.size(); ++i)
+                addRow(tempitem,computer,i,modelss);
         }else{
-                for(int i = 0; i < peripherals.size(); ++i){
-                tempitem = peripherals.get(i);
-                model = tempitem.getName();
-                price = tempitem.getPrice();
-                posotita = tempitem.getPosotita();
-                Object[] row = {model,price,posotita};
-                modelss.addRow(row); 
-                }
+            for(int i = 0; i < peripherals.size(); ++i)
+                addRow(tempitem,peripherals,i,modelss);
             }
-    }catch(ArrayIndexOutOfBoundsException e){}
-        stockspinner.setValue(1);
-         
+        stockspinner.setValue(1);       
     }//GEN-LAST:event_changestockbuttonActionPerformed
-
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         chooser.setDialogTitle("Επιλέξτε φάκελο για την Αποθήκευση των δεδομένων");
         int option = chooser.showSaveDialog(micon);
@@ -1827,131 +1618,66 @@ public class Katastima extends javax.swing.JFrame {
             FileWriter fwp = new FileWriter(peripheralsfile);     
             
             Writer output = new BufferedWriter(fwm);
-        
             int i;
             if(!monitor.isEmpty()){
-                for (i = 0; i < monitor.size(); i++) {
+                for (i = 0; i < monitor.size(); i++) 
                     output.write(monitor.get(i).Save()+ "\n");
-                }
             }
             output.close();
             output = new BufferedWriter(fwl);
             if(!laptop.isEmpty()){
-                for (i = 0; i < laptop.size(); i++) {
+                for (i = 0; i < laptop.size(); i++) 
                     output.write(laptop.get(i).Save()+ "\n");
-                }
             }
             output.close();
             output = new BufferedWriter(fwc);
             if(!computer.isEmpty()){
-                for (i = 0; i < computer.size(); i++) {
+                for (i = 0; i < computer.size(); i++) 
                     output.write(computer.get(i).Save() + "\n");
-                }
             }
             output.close();
             output = new BufferedWriter(fwp);
             if(!peripherals.isEmpty()){
-                for (i = 0; i < peripherals.size(); i++) {
+                for (i = 0; i < peripherals.size(); i++) 
                     output.write(peripherals.get(i).Save() + "\n");
-                }
             }
             output.close(); 
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(null,"File cannot be created");
         }
-        }
+    }
     }//GEN-LAST:event_SaveActionPerformed
-
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
             loadItems();
     }//GEN-LAST:event_ImportActionPerformed
     private void removePeripheralItem(){
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
-        try{
                 peripherals.remove(sel[0]);
-                sel[0]=0;
+                modelm.removeRow(sel[0]);
                 peripheralLabel.setText("Κανένα περιφερειακό ακόμα");
-                peripheralicon.setIcon(resize(noimage));
-                
-        int j;
-        for(j = 0; j <= peripherals.size();j++){
-                    modelm.removeRow(0);
-        }
-        for(j = 0; j <= peripherals.size();j++){
-            tempitem = peripherals.get(j);
-            String model = tempitem.getName();
-            float price = tempitem.getPrice();
-            int posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
-        }catch(IndexOutOfBoundsException e){}       
+                peripheralicon.setIcon(resize(noimage));    
     }    
     private void removeComputerItem(){
         DefaultTableModel modelm = (DefaultTableModel) removecomputertable.getModel();
-        try{
                 computer.remove(sel[0]);
-                sel[0]=0;
+                modelm.removeRow(sel[0]);
                 computerLabel.setText("Κανένας Η/Υ ακόμα");
-                computericon.setIcon(resize(noimage));
-                
-        int j;
-        for(j = 0; j <= computer.size();j++){
-                    modelm.removeRow(0);
-        }
-        for(j = 0; j <= computer.size();j++){
-            tempitem = computer.get(j);
-            String model = tempitem.getName();
-            float price = tempitem.getPrice();
-            int posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
-        }catch(IndexOutOfBoundsException e){}       
+                computericon.setIcon(resize(noimage));              
     }     
     private void removeLaptopItem(){
         DefaultTableModel modelm = (DefaultTableModel) removelaptoptable.getModel();
-        try{
                 laptop.remove(sel[0]);
-                sel[0]=0;
+                modelm.removeRow(sel[0]);
                 laptopLabel.setText("Κανένα Laptop ακόμα");
-                laptopicon.setIcon(resize(noimage));
-                
-        int j;
-        for(j = 0; j <= laptop.size();j++){
-                    modelm.removeRow(0);
-        }
-        for(j = 0; j <= laptop.size();j++){
-            tempitem = laptop.get(j);
-            String model = tempitem.getName();
-            float price = tempitem.getPrice();
-            int posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
-        }catch(IndexOutOfBoundsException e){}  
-    }    
+                laptopicon.setIcon(resize(noimage));     
+    }
     private void removeMonitorItem(){
         DefaultTableModel modelm = (DefaultTableModel) removemonitortable.getModel();
-        try{
                 monitor.remove(sel[0]);
-                sel[0]=0;
+                modelm.removeRow(sel[0]);
                 monitorLabel.setText("Καμία οθόνη ακόμα");
                 monitoricon.setIcon(resize(noimage));
-        int j;
-        for(j = 0; j <= monitor.size();j++){
-                    modelm.removeRow(0);
-        }
-        for(j = 0; j <= monitor.size();j++){
-            tempitem = monitor.get(j);
-            String model = tempitem.getName();
-            float price = tempitem.getPrice();
-            int posotita = tempitem.getPosotita();
-            Object[] row = {model,price,posotita};
-            modelm.addRow(row);
-        }
-        }catch(IndexOutOfBoundsException e){}  
     }
     private void ImageChooser(){
         int res = Chooser.showSaveDialog(micon);
@@ -1973,9 +1699,6 @@ public class Katastima extends javax.swing.JFrame {
             }
         return value;
     }
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2073,23 +1796,24 @@ public class Katastima extends javax.swing.JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null,"Δεν μπόρεσαν να βρεθούν τα αρχεία.");
         }
+        DefaultTableModel modelss = (DefaultTableModel) productstable.getModel();
+        for(int i = 0; i < monitor.size(); ++i)
+                addRow(tempitem,monitor,i,modelss);
         }
+        
     }
-    //Resize για το τεστλεμπελ που εβαλα για να δουμε αν φαινονται οι εικονες!
     public ImageIcon resize(ImageIcon icon){
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(260, 160, Image.SCALE_SMOOTH);
         ImageIcon newimage = new ImageIcon(newImg);
         return newimage;
     }   
-    private DefaultListModel getListModel() {
-        
+    private DefaultListModel getListModel() {    
         DefaultListModel listModel = new DefaultListModel<>();
         int i;
         for(i = 0; i < monitor.size(); i++){
           listModel.addElement(monitor.get(i));
-        } 
-        
+        }  
         return listModel;
     }
 
@@ -2207,14 +1931,4 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JSpinner stockspinner;
     // End of variables declaration//GEN-END:variables
 
-    private int CheckMaxItems() {
-        int max = laptop.size();
-        if(max < monitor.size())
-            max = monitor.size();
-        if(max < peripherals.size())
-            max = peripherals.size();
-        if(max < computer.size())
-            max = computer.size();
-        return max;
-    }
 }
