@@ -1,16 +1,14 @@
 
 import Models.Client;
-import Models.ClientList;
+import Models.ClientListModel;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Models.Item;
-import View.ItemRenderer;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,11 +20,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.DefaultComboBoxModel;
 import View.ItemRenderer;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import java.util.Scanner;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -66,6 +69,8 @@ public class Katastima extends javax.swing.JFrame {
     int[] sel2;
 
     public Katastima() {
+        this.loadItemList();
+        clientList = this.loadClientList();
         initComponents();
     }
 
@@ -153,15 +158,16 @@ public class Katastima extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         ItemsList = new javax.swing.JList<Item>();
         ClientNameInput = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        ItemCategoryComboBox = new javax.swing.JComboBox<>();
         button1 = new java.awt.Button();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         Orders = new javax.swing.JPanel();
-        ClientComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ClientItemList = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        ClientJList = new javax.swing.JList<>();
         Product_Management = new javax.swing.JPanel();
         addMonitor = new javax.swing.JButton();
         addLaptop = new javax.swing.JButton();
@@ -866,9 +872,9 @@ public class Katastima extends javax.swing.JFrame {
         setIconImage(logo.getImage());
         setResizable(false);
 
-        ItemsList.setModel(getListModel());
         ItemsList.setCellRenderer(new ItemRenderer());
         jScrollPane3.setViewportView(ItemsList);
+        ItemsList.setModel(getItemListModel());
         ItemsList.getAccessibleContext().setAccessibleDescription("");
 
         ClientNameInput.addActionListener(new java.awt.event.ActionListener() {
@@ -877,7 +883,12 @@ public class Katastima extends javax.swing.JFrame {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Οθόνη", "Λάπτοπ ", "Η/Υ", "Περιφερειακά" }));
+        ItemCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Οθόνη", "Λάπτοπ ", "Η/Υ", "Περιφερειακά" }));
+        ItemCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemCategoryComboBoxActionPerformed(evt);
+            }
+        });
 
         button1.setLabel("Προσθήκη");
         button1.setName(""); // NOI18N
@@ -898,46 +909,44 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ClientNameInput)
-                        .addComponent(jComboBox3, 0, 207, Short.MAX_VALUE))
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(ClientNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ItemCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addGap(181, 181, 181))
         );
         CartLayout.setVerticalGroup(
             CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CartLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel31)
+                    .addComponent(ItemCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CartLayout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ClientNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel31)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CartLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
-                        .addGap(2, 2, 2)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(ClientNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Καλάθι", Cart);
 
-        ClientComboBox.setModel(getClientNameModel());
-
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ClientItemList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ClientItemList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -946,17 +955,37 @@ public class Katastima extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(ClientItemList);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Πελάτης");
+
+        ClientJList.setModel(loadClientModel());
+        ClientJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClientJListMouseClicked(evt);
+            }
+        });
+        ClientJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                none(evt);
+            }
+        });
+        jScrollPane8.setViewportView(ClientJList);
 
         javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
         Orders.setLayout(OrdersLayout);
@@ -965,23 +994,23 @@ public class Katastima extends javax.swing.JFrame {
             .addGroup(OrdersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ClientComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
         OrdersLayout.setVerticalGroup(
             OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrdersLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(OrdersLayout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(ClientComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Παραγγελίες", Orders);
@@ -1103,7 +1132,7 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(addComputer)
                         .addGap(30, 30, 30)
                         .addComponent(addPeripherals)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Διαχείρηση Προιόντων", Product_Management);
@@ -1199,11 +1228,11 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(catsel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                         .addGroup(StockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(StockLayout.createSequentialGroup()
                                 .addComponent(ShowIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(43, Short.MAX_VALUE))
+                                .addContainerGap(57, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StockLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel29)
@@ -1253,15 +1282,106 @@ public class Katastima extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    
-    private DefaultComboBoxModel<String> getClientNameModel() {
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
+    private void loadItemList() {
+        monitor.add(new Item("LG", 1500, 2, new ImageIcon("src\\DefaultImage\\lg_monitor.png")));
+        monitor.add(new Item("Samsung", 1200, 2, new ImageIcon("src\\DefaultImage\\samsung_monitor.png")));
+        monitor.add(new Item("Sony", 1000, 2, new ImageIcon("src\\DefaultImage\\sony_monitor.png")));
         
-        for(Client client : clientList) {
-            model.addElement(client.getName());
+        laptop.add(new Item("HP", 600, 1, new ImageIcon("src\\DefaultImage\\hp_laptop.png")));
+        laptop.add(new Item("Xiaomi", 800, 1, new ImageIcon("src\\DefaultImage\\xiaomi_laptop.png")));
+        laptop.add(new Item("Lenovo", 850, 3, new ImageIcon("src\\DefaultImage\\lenovo_laptop.png")));
+        
+        computer.add(new Item("Alienware", 1800, 1, new ImageIcon("src\\DefaultImage\\alienware_pc.png")));
+        computer.add(new Item("HP", 1000, 1, new ImageIcon("src\\DefaultImage\\hp_pc.png")));
+        computer.add(new Item("Lenovo", 1100, 1, new ImageIcon("src\\DefaultImage\\lenovo_pc.png")));
+        
+        peripherals.add(new Item("Razer Mouse", 130, 1, new ImageIcon("src\\DefaultImage\\razer_mouse.png")));
+        peripherals.add(new Item("Sony Speakers", 220, 1, new ImageIcon("src\\DefaultImage\\sony_speakers.png")));
+        peripherals.add(new Item("HP Printer", 300, 1, new ImageIcon("src\\DefaultImage\\hp_printer.png"))); 
+    }
+    
+    private void saveClientList(ArrayList<Client> list) {
+        Gson gson = new Gson();
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
+        JsonSerializer<Item> serializer = new JsonSerializer<Item>() {  
+            @Override
+            public JsonElement serialize(Item t, java.lang.reflect.Type type, JsonSerializationContext jsc) {
+                JsonObject jsonMerchant = new JsonObject();
+
+                jsonMerchant.addProperty("model", t.getName());
+                jsonMerchant.addProperty("price", t.getPrice());
+                jsonMerchant.addProperty("quantity", t.getPosotita());
+
+                return jsonMerchant;
+            }
+        };
+        gsonBuilder.registerTypeAdapter(Item.class, serializer);
+
+        Gson customGson = gsonBuilder.create();  
+        
+        try (FileWriter writer = new FileWriter(".\\clients.json")) {
+            customGson.toJson(list, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private DefaultListModel loadClientModel() {
+        DefaultListModel model = new DefaultListModel();
+        model.addAll(clientList);
+        return model;
+    }
+    
+    private ArrayList<Client> loadClientList() {
+        Gson gson = new Gson();
+
+        String data = "";
+        try {
+            Scanner scan = new Scanner(new File(".\\clients.json"));
+            while (scan.hasNextLine()) {
+                data += scan.nextLine();
+            }
+        } catch( Exception e) {       
         }
         
-        return model;
+        JsonArray clientsJson = new JsonParser().parse(data).getAsJsonArray();
+        ArrayList<Client> clients = new ArrayList<Client>();
+        
+        for(int i=0; i<clientsJson.size(); i++) {
+            ArrayList<Item> items = new ArrayList<Item>();
+            JsonObject clientJson = clientsJson.get(i).getAsJsonObject();
+            JsonArray itemsJson = clientJson.get("items").getAsJsonArray();
+            for(int j=0; j<itemsJson.size(); j++) {
+                JsonObject itemJson = itemsJson.get(j).getAsJsonObject();
+                items.add(new Item(itemJson.get("model").getAsString(),
+                        itemJson.get("price").getAsFloat(),
+                        itemJson.get("quantity").getAsInt(),
+                        noimage));
+            }
+            
+            clients.add(new Client(clientJson.get("name").getAsString(), items));
+        }
+        
+        return clients;
+    }
+    
+    private void updateClientItemList() {
+        if(ClientJList.getSelectedIndex() < 0) return;
+        Client client = clientList.get(ClientJList.getSelectedIndex());
+        ArrayList<Item> items = client.getItems();
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Προϊόν", "Αξία", "Ποσότητα"}, 0);
+        for(int i=0; i<items.size(); i++) {
+            model.addRow(new Object[]{items.get(i).getName(), items.get(i).getPrice(), items.get(i).getPosotita()});
+        }
+        
+        ClientItemList.setModel(model);
+    }
+    
+    private void addNewClient(Client c) {
+        clientList.add(c);
+        ClientJList.setModel(new ClientListModel(clientList));
     }
     
     private void addItemToClient(Item item, String clientName) {
@@ -1270,10 +1390,12 @@ public class Katastima extends javax.swing.JFrame {
         if(clientID == -1) {
             Client c = new Client(clientName);
             c.addItem(item);
-            clientList.add(c);
+            addNewClient(c);
         } else {
             clientList.get(clientID).addItem(item);
         }
+        
+        saveClientList(clientList);
     }
        
     private int clientExists(String clientName, ArrayList<Client> clients) {
@@ -1297,7 +1419,7 @@ public class Katastima extends javax.swing.JFrame {
         int posotita = (Integer)mposotita.getValue();
         if(!model.isEmpty() && value != -1){
             monitor.add(new Item(model,value,posotita,ficon));
-            ItemsList.setModel(getListModel());
+            ItemsList.setModel(getItemListModel());
         }
         mmodel.setText("");
         mvalue.setText("");
@@ -1724,6 +1846,18 @@ public class Katastima extends javax.swing.JFrame {
         System.out.println("Client " + ClientNameInput.getText() + " added " + ItemsList.getSelectedValue().getName());
         addItemToClient(ItemsList.getSelectedValue(), ClientNameInput.getText());
     }//GEN-LAST:event_AddItemClicked
+
+    private void none(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_none
+       
+    }//GEN-LAST:event_none
+
+    private void ClientJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientJListMouseClicked
+        this.updateClientItemList();        // TODO add your handling code here:
+    }//GEN-LAST:event_ClientJListMouseClicked
+
+    private void ItemCategoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemCategoryComboBoxActionPerformed
+        ItemsList.setModel(getItemListModel());
+    }//GEN-LAST:event_ItemCategoryComboBoxActionPerformed
     private void removePeripheralItem(){
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
                 peripherals.remove(sel[0]);
@@ -1881,22 +2015,44 @@ public class Katastima extends javax.swing.JFrame {
         ImageIcon newimage = new ImageIcon(newImg);
         return newimage;
     }   
-    private DefaultListModel getListModel() {    
+    private DefaultListModel getItemListModel() {    
         DefaultListModel listModel = new DefaultListModel<>();
-        int i;
-        for(i = 0; i < monitor.size(); i++){
-          listModel.addElement(monitor.get(i));
+        ArrayList selectedList = new ArrayList();
+        int listIndex = ItemCategoryComboBox.getSelectedIndex();
+        
+        switch (listIndex) {
+            case 0:
+                selectedList = monitor;
+                break;
+            case 1:
+                selectedList = laptop;
+                break;
+            case 2:
+                selectedList = computer;
+                break;
+            case 3:
+                selectedList = peripherals;
+                break;
+            default:
+                break;
+        }
+        
+        for(int i = 0; i < selectedList.size(); i++){
+            listModel.addElement(selectedList.get(i));
         }  
+        
         return listModel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cart;
     private javax.swing.JFileChooser Chooser;
-    private javax.swing.JComboBox<String> ClientComboBox;
+    private javax.swing.JTable ClientItemList;
+    private javax.swing.JList<String> ClientJList;
     private javax.swing.JTextField ClientNameInput;
     private javax.swing.JDialog Dialog;
     private javax.swing.JMenuItem Import;
+    private javax.swing.JComboBox<String> ItemCategoryComboBox;
     private javax.swing.JList<Item> ItemsList;
     private javax.swing.JPanel Orders;
     private javax.swing.JPanel Product_Management;
@@ -1929,7 +2085,6 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JButton finalremovelaptop;
     private javax.swing.JButton finalremovemonitor;
     private javax.swing.JButton finalremoveperipheral;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1971,8 +2126,8 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel laptopLabel;
     private javax.swing.JLabel laptopicon;
     private javax.swing.JButton licon;
