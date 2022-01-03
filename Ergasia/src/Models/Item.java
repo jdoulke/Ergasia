@@ -12,10 +12,10 @@ import javax.swing.ImageIcon;
  */
 public class Item {
     
-    String model;
-    float price;
-    int posotita;
-    ImageIcon image;
+    private String model;
+    private float price;
+    private int posotita;
+    private ImageIcon image;
     
     public Item(String model, float price,int posotita, ImageIcon image) {
         this.model = model;

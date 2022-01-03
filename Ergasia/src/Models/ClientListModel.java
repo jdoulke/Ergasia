@@ -13,18 +13,18 @@ import javax.swing.event.ListDataListener;
  *
  * @author Dimos
  */
-public class ClientList extends AbstractListModel implements ComboBoxModel {
+public class ClientListModel extends AbstractListModel implements ComboBoxModel {
 
     private ArrayList<Client> list;
     private Client selected = null;
     
-    public ClientList(ArrayList<Client> list) {
+    public ClientListModel(ArrayList<Client> list) {
         this.list = list;
     }
     
     @Override
-    public void setSelectedItem(Object anItem) {
-        selected = (Client) anItem;
+    public void setSelectedItem(Object client) {
+        selected = (Client) client;
     }
 
     @Override

@@ -20,11 +20,25 @@ public class Client {
         this.items = new ArrayList<>();
     }
     
+    public Client(String name, ArrayList<Item> items) {
+        this.name = name;
+        this.items = items;
+    }
+    
     public void addItem(Item item) {
         items.add(item);
     }
     
+    public ArrayList<Item> getItems(){
+        return items;
+    }
+    
     public String getName() {
+        return name;
+    }
+    
+    @Override
+    public String toString() {
         return name;
     }
 }
