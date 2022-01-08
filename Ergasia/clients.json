@@ -1,1 +1,1 @@
-[{"name":"mo","items":[{"model":"LG","price":1500.0,"quantity":2},{"model":"LG","price":1500.0,"quantity":2}]},{"name":"yo","items":[{"model":"Xiaomi","price":800.0,"quantity":1}]},{"name":"test","items":[{"model":"Lenovo","price":850.0,"quantity":3}]}]
+[{"name":"mo","items":[]},{"name":"yo","items":[]},{"name":"test","items":[{"model":"Lenovo","price":850.0,"quantity":3}]}]

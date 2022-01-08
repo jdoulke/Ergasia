@@ -26,9 +26,11 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
     JLabel name = new JLabel();
     JLabel price = new JLabel();
     
+    JPanel panelText;
+    
     public ItemRenderer() {
         setLayout(new BorderLayout(5, 5));     
-        JPanel panelText = new JPanel(new GridLayout(0, 1));
+        panelText = new JPanel(new GridLayout(0, 1));
         panelText.add(name);
         panelText.add(price);
         add(icon, BorderLayout.WEST);
@@ -44,6 +46,12 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
         name.setText(item.getName());
         price.setText("Price: " + Float.toString(item.getPrice()) + "€");
         price.setForeground(Color.blue);
+        
+        if(isSelected) {
+            panelText.setBackground(Color.CYAN);
+        } else {
+            panelText.setBackground(Color.LIGHT_GRAY);
+        }
  
         return this;
     }

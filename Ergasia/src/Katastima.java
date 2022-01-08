@@ -30,6 +30,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import java.util.Scanner;
+import javax.swing.table.AbstractTableModel;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -168,6 +169,7 @@ public class Katastima extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         ClientJList = new javax.swing.JList<>();
+        CompleteOrderButton = new javax.swing.JButton();
         Product_Management = new javax.swing.JPanel();
         addMonitor = new javax.swing.JButton();
         addLaptop = new javax.swing.JButton();
@@ -898,7 +900,7 @@ public class Katastima extends javax.swing.JFrame {
             }
         });
 
-        jLabel30.setText("Ονομα Χρήστη");
+        jLabel30.setText("Όνομα Πελάτη");
 
         jLabel31.setText("Κατηγορία");
 
@@ -987,17 +989,29 @@ public class Katastima extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(ClientJList);
 
+        CompleteOrderButton.setText("Ολοκλήρωση Παραγγελίας");
+        CompleteOrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CompleteOrderButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
         Orders.setLayout(OrdersLayout);
         OrdersLayout.setHorizontalGroup(
             OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrdersLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrdersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(OrdersLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(CompleteOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(OrdersLayout.createSequentialGroup()
+                        .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
         OrdersLayout.setVerticalGroup(
@@ -1010,7 +1024,9 @@ public class Katastima extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(CompleteOrderButton)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Παραγγελίες", Orders);
@@ -1858,6 +1874,17 @@ public class Katastima extends javax.swing.JFrame {
     private void ItemCategoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemCategoryComboBoxActionPerformed
         ItemsList.setModel(getItemListModel());
     }//GEN-LAST:event_ItemCategoryComboBoxActionPerformed
+
+    private void CompleteOrderButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompleteOrderButtonMouseClicked
+        int clientIndex = ClientJList.getSelectedIndex();
+        int itemIndex = ClientItemList.getSelectedRow();
+        if(clientIndex == -1 || itemIndex == -1) return;
+        
+        clientList.get(clientIndex).removeItem(itemIndex);
+        
+        ((AbstractTableModel) this.ClientItemList.getModel()).fireTableDataChanged();
+        this.saveClientList(clientList);
+    }//GEN-LAST:event_CompleteOrderButtonMouseClicked
     private void removePeripheralItem(){
         DefaultTableModel modelm = (DefaultTableModel) removeperipheraltable.getModel();
                 peripherals.remove(sel[0]);
@@ -2050,6 +2077,7 @@ public class Katastima extends javax.swing.JFrame {
     private javax.swing.JTable ClientItemList;
     private javax.swing.JList<String> ClientJList;
     private javax.swing.JTextField ClientNameInput;
+    private javax.swing.JButton CompleteOrderButton;
     private javax.swing.JDialog Dialog;
     private javax.swing.JMenuItem Import;
     private javax.swing.JComboBox<String> ItemCategoryComboBox;
