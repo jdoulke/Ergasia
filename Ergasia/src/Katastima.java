@@ -1361,10 +1361,12 @@ public class Katastima extends javax.swing.JFrame {
             }
         } catch( Exception e) {       
         }
-        
-        JsonArray clientsJson = new JsonParser().parse(data).getAsJsonArray();
+        JsonArray clientsJson = null;
+        try{
+        clientsJson = new JsonParser().parse(data).getAsJsonArray();
+        }catch(IllegalStateException a){}
         ArrayList<Client> clients = new ArrayList<Client>();
-        
+        if(clientsJson != null){
         for(int i=0; i<clientsJson.size(); i++) {
             ArrayList<Item> items = new ArrayList<Item>();
             JsonObject clientJson = clientsJson.get(i).getAsJsonObject();
@@ -1378,6 +1380,7 @@ public class Katastima extends javax.swing.JFrame {
             }
             
             clients.add(new Client(clientJson.get("name").getAsString(), items));
+            }
         }
         
         return clients;
@@ -1881,8 +1884,8 @@ public class Katastima extends javax.swing.JFrame {
         if(clientIndex == -1 || itemIndex == -1) return;
         
         clientList.get(clientIndex).removeItem(itemIndex);
-        
         ((AbstractTableModel) this.ClientItemList.getModel()).fireTableDataChanged();
+        ClientItemList.remove(itemIndex);
         this.saveClientList(clientList);
     }//GEN-LAST:event_CompleteOrderButtonMouseClicked
     private void removePeripheralItem(){

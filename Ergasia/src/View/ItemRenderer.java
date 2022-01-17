@@ -25,6 +25,7 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
     JLabel icon = new JLabel();
     JLabel name = new JLabel();
     JLabel price = new JLabel();
+    ImageIcon newimage = new ImageIcon("src/DefaultImage/noimage.png");
     
     JPanel panelText;
     
@@ -36,6 +37,7 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
         add(icon, BorderLayout.WEST);
         icon.setSize(128,128);
         add(panelText, BorderLayout.CENTER);
+        
     }
 
     @Override
@@ -58,7 +60,7 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<Item>{
     public ImageIcon resize(ImageIcon icona){
         Image img = icona.getImage();
         Image newImg = img.getScaledInstance(icon.getWidth(), icon.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon newimage = new ImageIcon(newImg);
+        newimage = new ImageIcon(newImg);
         return newimage;
     }
 }
