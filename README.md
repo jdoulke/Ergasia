@@ -1,8 +1,9 @@
 # Shop Management Software
-A Java program for managing a shop.
+Java program for managing a shop.
 
-This is my first ever work in Java. It's a custom GUI shop where you can add or remove products.
-It's a beneficial program for shopkeepers who wants to track products or clients in their store.
-The Shop Management Software was an exam for my course Human Machine Interaction. 
-
-You can read a manual in the Wiki section. It is in greek only
+Developed a custom GUI shop management software in Java Swing as part of the Human Machine Interaction course,
+collaborating with a fellow student to design and implement the program. 
+The software enables shopkeepers to efficiently manage their products and clients,
+with features including the ability to add or remove products, track
+inventory, and generate sales reports. Our project was well-received
+by our course instructor, complete with a comprehensive manual in Greek on Wiki section.
