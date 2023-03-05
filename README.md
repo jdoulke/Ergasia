@@ -1,4 +1,4 @@
-# Shop GUI
+# Shop Management Software
 A Java program for managing a shop.
 
 This is my first ever work in Java. It's a custom GUI shop where you can add or remove products.
